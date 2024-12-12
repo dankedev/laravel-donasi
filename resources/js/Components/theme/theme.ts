@@ -6,7 +6,7 @@ const inputDefaultProps = {
 };
 
 export const theme = createTheme({
-    primaryColor: 'dark',
+    primaryColor: 'blue',
     // colorScheme: "light",
     components: {
         ModalTitle: {

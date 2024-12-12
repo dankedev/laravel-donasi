@@ -53,8 +53,11 @@
         "@tiptap/pm": "^2.10.3",
         "@tiptap/react": "^2.10.3",
         "@tiptap/starter-kit": "^2.10.3",
+        "clsx": "^2.1.1",
         "dayjs": "^1.11.13",
         "embla-carousel-react": "^7.1.0",
+        "lucide": "^0.468.0",
+        "lucide-react": "^0.468.0",
         "recharts": "2"
     }
 }

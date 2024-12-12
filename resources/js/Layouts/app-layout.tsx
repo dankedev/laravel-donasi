@@ -1,6 +1,7 @@
-import { AppShell, Burger, Group, Skeleton } from '@mantine/core';
+import { AppShell, Burger, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { PropsWithChildren, ReactNode } from 'react';
+import { SideNavMenu } from './side-nav-menu';
 // import { MantineLogo } from '@mantinex/mantine-logo';
 
 export default function AppLayout({
@@ -11,6 +12,7 @@ export default function AppLayout({
 
     return (
         <AppShell
+            layout="alt"
             header={{ height: { base: 60, md: 70, lg: 80 } }}
             navbar={{
                 width: { base: 200, md: 300 },
@@ -30,13 +32,8 @@ export default function AppLayout({
                     <span>Donasi</span>
                 </Group>
             </AppShell.Header>
-            <AppShell.Navbar p="md">
-                Navbar
-                {Array(15)
-                    .fill(0)
-                    .map((_, index) => (
-                        <Skeleton key={index} h={28} mt="sm" animate={false} />
-                    ))}
+            <AppShell.Navbar>
+                <SideNavMenu />
             </AppShell.Navbar>
             <AppShell.Main>
                 {header}
