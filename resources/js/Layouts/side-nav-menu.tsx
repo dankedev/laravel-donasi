@@ -1,4 +1,4 @@
-import { Code, ScrollArea } from "@mantine/core";
+import { AppShell, Code, ScrollArea } from "@mantine/core";
 import { LinksGroup } from "./links-group";
 import { navLinks } from "./nav-links";
 import classes from "./side-nav-menu..module.css";
@@ -9,19 +9,16 @@ export function SideNavMenu() {
 
     return (
         <nav className="flex h-full w-full flex-col">
-            <div className="border-b border-stone-300 bg-stone-100 px-6 py-6">
+            <AppShell.Section className="border-b border-stone-300 bg-stone-100 p-6 dark:border-gray-800 dark:bg-black">
                 <div className="flex w-full justify-between">
                     <span className="text-2xl font-bold">Donasi</span>
                     <Code fw={700}>v0.1.2</Code>
                 </div>
-            </div>
+            </AppShell.Section>
 
-            <div className="h-full w-full flex-grow px-6">
-                <ScrollArea className={`${classes.links} `}>
-                    <div className={classes.linksInner}>{links}</div>
-                </ScrollArea>
-            </div>
-
+            <AppShell.Section grow component={ScrollArea}>
+                <div className={classes.linksInner}>{links}</div>
+            </AppShell.Section>
             <div className="flex-grow-0 border-t px-6">
                 <UserButton />
             </div>
