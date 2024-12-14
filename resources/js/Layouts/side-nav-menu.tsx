@@ -9,7 +9,7 @@ export function SideNavMenu() {
 
     return (
         <nav className="flex h-full w-full flex-col">
-            <AppShell.Section className="border-b border-stone-300 bg-stone-100 p-6 dark:border-gray-800 dark:bg-black">
+            <AppShell.Section className="border-b p-6">
                 <div className="flex w-full justify-between">
                     <span className="text-2xl font-bold">Donasi</span>
                     <Code fw={700}>v0.1.2</Code>

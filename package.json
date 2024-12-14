@@ -5,7 +5,10 @@
         "build": "tsc && vite build && vite build --ssr",
         "dev": "vite",
         "lint": "eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
-        "format": "prettier --write \"**/*.{ts,tsx}\""
+        "format": "prettier --write \"**/*.{ts,tsx}\"",
+        "vitest": "vitest run",
+        "vitest:watch": "vitest",
+        "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
@@ -27,7 +30,9 @@
         "eslint-plugin-react": "^7.34.4",
         "eslint-plugin-react-hooks": "^4.6.2",
         "laravel-vite-plugin": "^1.0",
-        "postcss": "^8.4.31",
+        "postcss": "^8.4.49",
+        "postcss-preset-mantine": "^1.17.0",
+        "postcss-simple-vars": "^7.0.1",
         "prettier": "^3.3.0",
         "prettier-plugin-organize-imports": "^4.0.0",
         "prettier-plugin-tailwindcss": "^0.6.5",
@@ -51,6 +56,10 @@
         "@mantine/spotlight": "^7.15.1",
         "@mantine/tiptap": "^7.15.1",
         "@tiptap/extension-link": "^2.10.3",
+        "@tiptap/extension-subscript": "^2.10.3",
+        "@tiptap/extension-superscript": "^2.10.3",
+        "@tiptap/extension-text-align": "^2.10.3",
+        "@tiptap/extension-underline": "^2.10.3",
         "@tiptap/pm": "^2.10.3",
         "@tiptap/react": "^2.10.3",
         "@tiptap/starter-kit": "^2.10.3",

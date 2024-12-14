@@ -6,7 +6,7 @@ import { theme } from "./theme";
 
 export default function ThemeProvider({ children }: PropsWithChildren) {
     return (
-        <MantineProvider theme={theme}>
+        <MantineProvider theme={theme} withCssVariables withGlobalClasses>
             <Notifications />
             <ModalsProvider>{children}</ModalsProvider>
             {/* <MainSpotlight /> */}

@@ -14,8 +14,8 @@ export const navLinks: LinksGroupProps[] = [
         icon: Gift,
         initiallyOpened: true,
         links: [
-            { label: "Semua Campaign", link: "dashboard" },
-            { label: "Editor", link: "dashboard" },
+            { label: "Semua Campaign", link: "editor.campaign.index" },
+            { label: "Editor", link: "editor.campaign.editor" },
         ],
     },
 

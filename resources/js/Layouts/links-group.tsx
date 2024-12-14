@@ -1,4 +1,4 @@
-import { Box, Collapse, Group, Text, ThemeIcon, UnstyledButton } from "@mantine/core";
+import { Box, Collapse, Group, ThemeIcon, UnstyledButton } from "@mantine/core";
 // import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react';
 import { Link } from "@inertiajs/react";
 import { clsx } from "clsx";
@@ -13,15 +13,15 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
     const current = link === route().current() || route().current(link ?? "");
 
     const items = (hasLinks ? links : []).map((link) => (
-        <Text<"a">
-            component="a"
-            className={classes.link}
+        <Link
+            className={clsx(classes.link, {
+                [`font-bold text-blue-600 ${classes.activeLink}`]: current,
+            })}
             href={link?.link ? route(link?.link ?? "") : "#"}
-            key={link.label}
-            onClick={(event) => event.preventDefault()}
+            key={`${link.label}-${link.link}`}
         >
             {link.label}
-        </Text>
+        </Link>
     ));
 
     return (

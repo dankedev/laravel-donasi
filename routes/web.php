@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Editors\CampaignEditorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteConfigController;
 use Illuminate\Foundation\Application;
@@ -27,6 +28,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('setting')->name('setting.')->controller(SiteConfigController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+    });
+
+    Route::prefix('editor')->name('editor.')->group(function () {
+        Route::prefix('campaign')->name('campaign.')->controller(CampaignEditorController::class)->group(function () {
+
+            Route::get('/', 'index')->name('index');
+            Route::get('/editor', 'edit')->name('editor');
+        });
     });
 });
 
