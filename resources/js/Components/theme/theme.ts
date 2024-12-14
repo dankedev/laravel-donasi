@@ -1,12 +1,12 @@
-import { createTheme, rem } from '@mantine/core';
+import { createTheme, rem } from "@mantine/core";
 
 const inputDefaultProps = {
-    placeholder: 'Ketik disini',
-    size: 'md',
+    placeholder: "Ketik disini",
+    size: "md",
 };
 
 export const theme = createTheme({
-    primaryColor: 'blue',
+    primaryColor: "blue",
     // colorScheme: "light",
     components: {
         ModalTitle: {
@@ -18,7 +18,7 @@ export const theme = createTheme({
         },
         InputWrapper: {
             defaultProps: {
-                inputWrapperOrder: ['label', 'input', 'description', 'error'],
+                inputWrapperOrder: ["label", "input", "description", "error"],
             },
         },
         InputLabel: {

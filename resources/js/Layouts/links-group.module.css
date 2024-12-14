@@ -41,6 +41,3 @@
 	color: lightdark(var(--mantine-colors-white), var(--mantine-colors-black));
 }
 
-.chevron {
-	transition: transform 200ms ease;
-}

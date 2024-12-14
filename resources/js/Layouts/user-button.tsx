@@ -1,7 +1,7 @@
-import { usePage } from '@inertiajs/react';
-import { Avatar, Flex, Text, UnstyledButton } from '@mantine/core';
-import classes from './user-button.module.css';
-// import { useGetAuth } from "@core/helpers";
+import { usePage } from "@inertiajs/react";
+import { Avatar, Flex, Text, UnstyledButton } from "@mantine/core";
+import classes from "./user-button.module.css";
+// import { useGetAuth } from "@/helpers";
 
 export function UserButton() {
     const user = usePage().props.auth.user;

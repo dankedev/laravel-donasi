@@ -1,37 +1,11 @@
-import { Code, ScrollArea } from '@mantine/core';
-import { ChartArea, Contact, Gift, House, Lock, Settings2 } from 'lucide-react';
-import { LinksGroup } from './links-group';
-import classes from './side-nav-menu..module.css';
-import { UserButton } from './user-button';
-const mockdata = [
-    { label: 'Dashboard', icon: House },
-    {
-        label: 'Campaign',
-        icon: Gift,
-        initiallyOpened: true,
-        links: [
-            { label: 'Semua Campaign', link: '/' },
-            { label: 'Editor', link: '/' },
-        ],
-    },
+import { Code, ScrollArea } from "@mantine/core";
+import { LinksGroup } from "./links-group";
+import { navLinks } from "./nav-links";
+import classes from "./side-nav-menu..module.css";
+import { UserButton } from "./user-button";
 
-    { label: 'Analytics', icon: ChartArea },
-    { label: 'Contracts', icon: Contact },
-    { label: 'Settings', icon: Settings2 },
-    {
-        label: 'Security',
-        icon: Lock,
-        links: [
-            { label: 'Enable 2FA', link: '/' },
-            { label: 'Change password', link: '/' },
-            { label: 'Recovery codes', link: '/' },
-        ],
-    },
-];
 export function SideNavMenu() {
-    const links = mockdata.map((item) => (
-        <LinksGroup {...item} key={item.label} />
-    ));
+    const links = navLinks.map((item) => <LinksGroup {...item} key={item.label} />);
 
     return (
         <nav className="flex h-full w-full flex-col">

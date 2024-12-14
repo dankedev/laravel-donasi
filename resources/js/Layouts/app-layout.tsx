@@ -1,13 +1,10 @@
-import { AppShell, Burger, Group } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { PropsWithChildren, ReactNode } from 'react';
-import { SideNavMenu } from './side-nav-menu';
+import { AppShell, Burger, Group } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { PropsWithChildren, ReactNode } from "react";
+import { SideNavMenu } from "./side-nav-menu";
 // import { MantineLogo } from '@mantinex/mantine-logo';
 
-export default function AppLayout({
-    children,
-    header,
-}: PropsWithChildren<{ header?: ReactNode }>) {
+export default function AppLayout({ children, header }: PropsWithChildren<{ header?: ReactNode }>) {
     const [opened, { toggle }] = useDisclosure();
 
     return (
@@ -16,19 +13,14 @@ export default function AppLayout({
             header={{ height: { base: 60, md: 70, lg: 80 } }}
             navbar={{
                 width: { base: 200, md: 300 },
-                breakpoint: 'sm',
+                breakpoint: "sm",
                 collapsed: { mobile: !opened },
             }}
             padding="md"
         >
             <AppShell.Header>
                 <Group h="100%" px="md">
-                    <Burger
-                        opened={opened}
-                        onClick={toggle}
-                        hiddenFrom="sm"
-                        size="sm"
-                    />
+                    <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
                     <span>Donasi</span>
                 </Group>
             </AppShell.Header>

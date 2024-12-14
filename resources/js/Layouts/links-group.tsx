@@ -1,36 +1,22 @@
-import {
-    Box,
-    Collapse,
-    Group,
-    Text,
-    ThemeIcon,
-    UnstyledButton,
-} from '@mantine/core';
+import { Box, Collapse, Group, Text, ThemeIcon, UnstyledButton } from "@mantine/core";
 // import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react';
-import { Calendar, ChevronRight, LucideProps } from 'lucide-react';
-import { useState } from 'react';
-import classes from './links-group.module.css';
+import { Link } from "@inertiajs/react";
+import { clsx } from "clsx";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import classes from "./links-group.module.css";
+import { LinksGroupProps } from "./nav-links";
 
-interface LinksGroupProps {
-    icon: React.FC<LucideProps>;
-    label: string;
-    initiallyOpened?: boolean;
-    links?: { label: string; link: string }[];
-}
-
-export function LinksGroup({
-    icon: Icon,
-    label,
-    initiallyOpened,
-    links,
-}: LinksGroupProps) {
+export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: LinksGroupProps) {
     const hasLinks = Array.isArray(links);
     const [opened, setOpened] = useState(initiallyOpened || false);
+    const current = link === route().current() || route().current(link ?? "");
+
     const items = (hasLinks ? links : []).map((link) => (
-        <Text<'a'>
+        <Text<"a">
             component="a"
             className={classes.link}
-            href={link.link}
+            href={link?.link ? route(link?.link ?? "") : "#"}
             key={link.label}
             onClick={(event) => event.preventDefault()}
         >
@@ -40,46 +26,51 @@ export function LinksGroup({
 
     return (
         <>
-            <UnstyledButton
-                onClick={() => setOpened((o) => !o)}
-                className={classes.control}
-            >
-                <Group justify="space-between" gap={0}>
-                    <Box style={{ display: 'flex', alignItems: 'center' }}>
-                        <ThemeIcon variant="light" color="primary" size={30}>
-                            <Icon size={18} />
-                        </ThemeIcon>
-                        <Box ml="md">{label}</Box>
-                    </Box>
-                    {hasLinks && (
-                        <ChevronRight
-                            className={classes.chevron}
-                            style={{
-                                transform: opened ? 'rotate(-90deg)' : 'none',
-                            }}
-                        />
-                    )}
-                </Group>
-            </UnstyledButton>
+            {link ? (
+                <Link
+                    href={link ? route(link) : "#"}
+                    className={clsx(classes.control, {
+                        ["rounded-md bg-white shadow-sm hover:bg-red-100"]: current,
+                    })}
+                    // className={`${classes.control} ${current &&  "bg-white shadow-sm rounded-md"}`}
+                >
+                    <Group gap={0} justify="space-between">
+                        <Box style={{ display: "flex", alignItems: "center" }}>
+                            <ThemeIcon variant={current ? "filled" : "light"} size={30} radius="md">
+                                <Icon className="text-xl" />
+                            </ThemeIcon>
+                            <Box ml="md">{label} </Box>
+                        </Box>
+                    </Group>
+                </Link>
+            ) : (
+                <UnstyledButton
+                    onClick={() => {
+                        if (hasLinks) {
+                            setOpened((o) => !o);
+                            return;
+                        }
+                    }}
+                    className={classes.control}
+                >
+                    <Group gap={0} justify="space-between">
+                        <Box style={{ display: "flex", alignItems: "center" }}>
+                            <ThemeIcon variant="light" size={30}>
+                                <Icon className="text-xl" />
+                            </ThemeIcon>
+                            <Box ml="md">{label}</Box>
+                        </Box>
+                        {hasLinks && (
+                            <ChevronDown
+                                className={clsx("transition-transform ease-linear", {
+                                    ["rotate-180"]: opened,
+                                })}
+                            />
+                        )}
+                    </Group>
+                </UnstyledButton>
+            )}
             {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
         </>
-    );
-}
-
-const mockdata = {
-    label: 'Releases',
-    icon: Calendar,
-    links: [
-        { label: 'Upcoming releases', link: '/' },
-        { label: 'Previous releases', link: '/' },
-        { label: 'Releases schedule', link: '/' },
-    ],
-};
-
-export function NavbarLinksGroup() {
-    return (
-        <Box mih={220} p="md">
-            <LinksGroup {...mockdata} />
-        </Box>
     );
 }
