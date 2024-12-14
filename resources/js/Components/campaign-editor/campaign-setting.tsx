@@ -1,9 +1,9 @@
 import { Card, NumberInput, Radio, Stack } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
-import { useCampaignFormContext } from "./editor-provider";
+import { useCampaignEditor } from "./editor-provider";
 
 export function CampaignSettingEditor() {
-    const form = useCampaignFormContext();
+    const { form } = useCampaignEditor();
 
     const formTypes = [
         { label: "Card", value: "card" },
@@ -21,7 +21,7 @@ export function CampaignSettingEditor() {
         { label: "Zakat Mal", value: "zakat_mal" },
     ];
     return (
-        <Card bg="gray.0">
+        <Card bg="gray.0" className="sticky top-0 z-50">
             <Card.Section withBorder px="lg" py="md">
                 <h2>Pengaturan Campaign</h2>
             </Card.Section>

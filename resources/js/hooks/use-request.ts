@@ -1,3 +1,4 @@
+import { FormValue } from "@/types";
 import { useForm } from "@inertiajs/react";
 import { UseFormInput, useForm as useMantineForm } from "@mantine/form";
 import { useEffect } from "react";
@@ -26,6 +27,6 @@ export function useRequest<Values extends Record<string, unknown> = Record<strin
     return { ...other, ...form, data };
 }
 
-export type UseRequestProps<Values extends Record<string, unknown>> = ReturnType<
+export type UseRequestProps<Values extends Record<string, FormValue>> = ReturnType<
     typeof useRequest<Values>
 >;

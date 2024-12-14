@@ -2,19 +2,15 @@ import {
     CampaignFormProvider,
     CampaignSettingEditor,
     ContentCampaignEditor,
-    useCampaignForm,
 } from "@/components/campaign-editor";
 import AppLayout from "@/layouts/app-layout";
 import { CampaignProps } from "@/types/campaign";
 import { Head } from "@inertiajs/react";
+import { Button } from "@mantine/core";
 
 export default function CampaignEditor({ data }: { data: CampaignProps }) {
-    const form = useCampaignForm({
-        initialValues: data,
-    });
-
     return (
-        <CampaignFormProvider form={form}>
+        <CampaignFormProvider data={data}>
             <Head title={data?.title ?? "Campaign Editor"} />
 
             <AppLayout>
@@ -22,11 +18,12 @@ export default function CampaignEditor({ data }: { data: CampaignProps }) {
                     <div className="col-span-1 lg:col-span-9">
                         <ContentCampaignEditor />
                     </div>
-                    <div className="col-span-1 lg:col-span-3">
+                    <div className="relative col-span-1 lg:col-span-3">
                         <CampaignSettingEditor />
-                        {JSON.stringify(form.values)}
+                        <Button type="submit">Simpan Campaign</Button>
                     </div>
                 </div>
+
             </AppLayout>
         </CampaignFormProvider>
     );

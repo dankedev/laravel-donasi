@@ -1,7 +1,7 @@
 import { Box, Collapse, Group, ThemeIcon, UnstyledButton } from "@mantine/core";
 // import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react';
+import { cn } from "@/utils/helper";
 import { Link } from "@inertiajs/react";
-import { clsx } from "clsx";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import classes from "./links-group.module.css";
@@ -14,7 +14,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
 
     const items = (hasLinks ? links : []).map((link) => (
         <Link
-            className={clsx(classes.link, {
+            className={cn(classes.link, {
                 [`font-bold text-blue-600 ${classes.activeLink}`]: current,
             })}
             href={link?.link ? route(link?.link ?? "") : "#"}
@@ -29,7 +29,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
             {link ? (
                 <Link
                     href={link ? route(link) : "#"}
-                    className={clsx(classes.control, {
+                    className={cn(classes.control, {
                         ["rounded-md bg-white shadow-sm hover:bg-red-100"]: current,
                     })}
                     // className={`${classes.control} ${current &&  "bg-white shadow-sm rounded-md"}`}
@@ -62,7 +62,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
                         </Box>
                         {hasLinks && (
                             <ChevronDown
-                                className={clsx("transition-transform ease-linear", {
+                                className={cn("transition-transform ease-linear", {
                                     ["rotate-180"]: opened,
                                 })}
                             />

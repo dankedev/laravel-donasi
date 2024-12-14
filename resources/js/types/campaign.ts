@@ -1,3 +1,5 @@
+import { FormValue } from "./request";
+
 export interface CampaignProps {
     id: number; // corresponds to the auto-incrementing primary key
     title: string; // corresponds to the 'title' column
@@ -10,4 +12,5 @@ export interface CampaignProps {
     end_date: Date; // corresponds to the 'end_date' column
     created_at: Date; // corresponds to the 'created_at' timestamp
     updated_at: Date; // corresponds to the 'updated_at' timestamp
+    [key: string]: FormValue;
 }

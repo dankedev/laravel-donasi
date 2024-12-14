@@ -35,6 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::get('/', 'index')->name('index');
             Route::get('/editor', 'edit')->name('editor');
+            Route::post('/save', 'store')->name('store');
+            Route::patch('/update', 'update')->name('update');
         });
     });
 });
