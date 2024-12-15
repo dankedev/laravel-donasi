@@ -1,77 +1,98 @@
-import { Card, NumberInput, Radio, Stack } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
+import { utcDateTime } from "@/utils";
+import { Card, Checkbox, NumberInput, Stack, Text, UnstyledButton } from "@mantine/core";
+import { DateTimePicker } from "@mantine/dates";
+import { useRef } from "react";
 import { useCampaignEditor } from "./editor-provider";
+import { UploadFeaturedImage } from "./upload-feature-image";
 
 export function CampaignSettingEditor() {
     const { form } = useCampaignEditor();
-
-    const formTypes = [
-        { label: "Card", value: "card" },
-
-        { label: "List", value: "list" },
-
-        { label: "Manual", value: "manual" },
-
-        { label: "Package", value: "package" },
-
-        { label: "Qurban", value: "qurban" },
-
-        { label: "Zakat Fitr", value: "zakat_fitr" },
-
-        { label: "Zakat Mal", value: "zakat_mal" },
-    ];
+    const checkboxRef = useRef<HTMLInputElement | null>(null);
     return (
         <Card bg="gray.0" className="sticky top-0 z-50">
-            <Card.Section withBorder px="lg" py="md">
-                <h2>Pengaturan Campaign</h2>
-            </Card.Section>
-            <Card.Section p="lg" withBorder>
-                <Radio.Group
-                    {...form.getInputProps("form_type")}
-                    label="Jenis Campaign"
-                    description="Sesuaikan jenis campaign anda"
-                    withAsterisk
-                >
-                    <Stack mt="xs">
-                        {formTypes.map((item) => (
-                            <Radio
-                                key={`radio-form-type-${item.value}`}
-                                value={item.value}
-                                label={item.label}
-                            />
-                        ))}
-                    </Stack>
-                </Radio.Group>
-            </Card.Section>
-            <Card.Section inheritPadding py="lg">
+            <UploadFeaturedImage
+                directory="featured"
+                onSetValue={(id) => {
+                    form.setFieldValue("featured_id", id);
+                }}
+                postId={Number(form?.values?.id)}
+                placeholder="Disarankan 650x350px"
+                currentImageUrl={form.values?.featured_image?.url}
+            />
+
+            <Card.Section inheritPadding py="lg" withBorder mt={30}>
                 <NumberInput
                     {...form.getInputProps("goal")}
                     placeholder="Target campaign"
                     label="Target Pencapaian Campaign"
                     leftSection={<span>Rp.</span>}
                     hideControls
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    styles={{
+                        input: {
+                            fontWeight: "bolder",
+                            fontSize: 18,
+                        },
+                    }}
                 />
             </Card.Section>
 
-            <Card.Section inheritPadding py="lg">
+            <Card.Section inheritPadding py="lg" withBorder mb={30}>
                 <Stack>
-                    <DateInput
+                    <DateTimePicker
                         label="Tanggal Campaign dimulai"
                         clearable
                         minDate={new Date()}
                         placeholder="Pilih tanggal"
-                        {...form.getInputProps("started_date")}
+                        // {...form.getInputProps("start_date")}
+                        value={
+                            form.values.start_date && new Date(utcDateTime(form.values.start_date))
+                        }
+                        onChange={(a) => form.setFieldValue("start_date", a)}
                     />
-                    <DateInput
-                        disabled={!form.values.started_date}
-                        minDate={form.values.started_date ?? new Date()}
+                    <DateTimePicker
+                        disabled={!form.values.start_date}
+                        minDate={
+                            form.values.start_date ? new Date(form.values.start_date) : new Date()
+                        }
                         label="Tanggal Campaign Selesai"
                         clearable
                         placeholder="Pilih tanggal"
-                        {...form.getInputProps("end_date")}
+                        value={
+                            form.values.finish_date &&
+                            new Date(utcDateTime(form.values.finish_date))
+                        }
+                        onChange={(a) => form.setFieldValue("finish_date", a)}
                     />
                 </Stack>
             </Card.Section>
+
+            <UnstyledButton
+                className="flex w-full items-center rounded-md border-gray-300 bg-gray-50 p-6 hover:bg-gray-100"
+                type="button"
+                p="lg"
+                onClick={() => checkboxRef?.current?.click()}
+            >
+                <Checkbox
+                    ref={checkboxRef}
+                    tabIndex={-1}
+                    size="md"
+                    mr="xl"
+                    styles={{ input: { cursor: "pointer" } }}
+                    aria-hidden
+                    {...form.getInputProps("publised", { type: "checkbox" })}
+                />
+
+                <div>
+                    <Text fw={500} mb={7} lh={1}>
+                        Publish
+                    </Text>
+                    <Text fz="sm" c="dimmed">
+                        Campaign tampil dipublik
+                    </Text>
+                </div>
+            </UnstyledButton>
         </Card>
     );
 }

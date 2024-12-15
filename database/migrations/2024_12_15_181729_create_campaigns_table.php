@@ -13,15 +13,19 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
+            $table->string('title')->index();
+            $table->string('slug')->index()->unique();
+            $table->text('description')->nullable();
+
             $table->longText('content');
             $table->enum('form_type', ['card', 'list', 'manual', 'package', 'qurban', 'zakat_fitr', 'zakat_mal'])->default('card');
             $table->boolean('publised')->default(false);
-            $table->mediumInteger("goal");
-            $table->timestamp('started_date');
-            $table->timestamp('end_date');
+            $table->bigInteger("goal")->default(0);
+            $table->timestamp('start_date');
+            $table->timestamp('finish_date');
+            $table->unsignedBigInteger('featured_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

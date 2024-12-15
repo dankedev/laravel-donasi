@@ -1,5 +1,6 @@
 import { useRequest, UseRequestProps } from "@/hooks/use-request";
 import { CampaignProps } from "@/types/campaign";
+import { utcDateTime } from "@/utils";
 import { initializeFormValues } from "@/utils/helper";
 import { notifications } from "@mantine/notifications";
 import { createContext, PropsWithChildren, useContext, useEffect } from "react";
@@ -23,7 +24,15 @@ export function CampaignFormProvider({ children, data }: PropsWithChildren<Edito
     useEffect(() => {
         if (data?.id)
             initializeFormValues<CampaignProps>(data).then((a) => {
-                form.setValues(a);
+                return form.setValues({
+                    ...a,
+                    start_date: form.values.start_date
+                        ? new Date(utcDateTime(form.values.start_date))
+                        : null,
+                    finish_date: form.values.finish_date
+                        ? new Date(utcDateTime(form.values.finish_date))
+                        : null,
+                });
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);

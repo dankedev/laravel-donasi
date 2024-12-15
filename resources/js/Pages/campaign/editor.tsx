@@ -20,10 +20,13 @@ export default function CampaignEditor({ data }: { data: CampaignProps }) {
                     </div>
                     <div className="relative col-span-1 lg:col-span-3">
                         <CampaignSettingEditor />
-                        <Button type="submit">Simpan Campaign</Button>
+                        <div className="py-12">
+                            <Button type="submit" fullWidth size="lg">
+                                Simpan Campaign
+                            </Button>
+                        </div>
                     </div>
                 </div>
-
             </AppLayout>
         </CampaignFormProvider>
     );

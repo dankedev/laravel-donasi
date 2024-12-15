@@ -5,4 +5,5 @@ export type FormValue =
     | null
     | undefined
     | Date
-    | Record<string, string | number>;
+    | Record<string, string | number | unknown>
+    | unknown;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetStorageController;
 use App\Http\Controllers\Editors\CampaignEditorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteConfigController;
@@ -26,6 +27,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
+
+    Route::controller(AssetStorageController::class)->prefix("upload")->group(function () {
+        // Route::post('/{id}', [AssetStorageController::class, ' "upload"'])->name('upload');
+        Route::post('/', "upload")->name('upload');
+    });
+
     Route::prefix('setting')->name('setting.')->controller(SiteConfigController::class)->group(function () {
         Route::get('/', 'index')->name('index');
     });
@@ -36,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/editor', 'edit')->name('editor');
             Route::post('/save', 'store')->name('store');
-            Route::patch('/update', 'update')->name('update');
+            Route::patch('/update', 'store')->name('update');
         });
     });
 });
