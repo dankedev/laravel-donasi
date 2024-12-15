@@ -8,8 +8,8 @@ import {
     CampaignFormProvider,
     CampaignSettingEditor,
     ContentCampaignEditor,
-} from "@/components/campaign-editor";
-import AppLayout from "@/layouts/app-layout";
+} from "@/Components/campaign-editor";
+import AppLayout from "@/Layouts/app-layout";
 import { CampaignProps } from "@/types/campaign";
 import { Head } from "@inertiajs/react";
 import { Button } from "@mantine/core";

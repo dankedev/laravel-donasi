@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import "@mantine/core/styles.css";
-import "@mantine/notifications/styles.css";
-import "@mantine/spotlight/styles.css";
-import "../css/app.css";
-import "./bootstrap";
-// import "../css/tailwind.css";
-import "@mantine/dropzone/styles.css";
-=======
 import "@mantine/notifications/styles.css";
 import "@mantine/spotlight/styles.css";
 import "./bootstrap";
@@ -17,13 +8,12 @@ import "@mantine/tiptap/styles.css";
 import "../css/app.css";
 
 import "@mantine/core/styles.css";
->>>>>>> dev
 
 import { createInertiaApp } from "@inertiajs/react";
 import { Notifications } from "@mantine/notifications";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot, hydrateRoot } from "react-dom/client";
-import ThemeProvider from "./components/theme/theme-provider";
+import ThemeProvider from "./Components/theme/theme-provider";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
