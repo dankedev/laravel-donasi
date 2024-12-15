@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/spotlight/styles.css";
@@ -5,6 +6,18 @@ import "../css/app.css";
 import "./bootstrap";
 // import "../css/tailwind.css";
 import "@mantine/dropzone/styles.css";
+=======
+import "@mantine/notifications/styles.css";
+import "@mantine/spotlight/styles.css";
+import "./bootstrap";
+// import "../css/tailwind.css";
+import "@mantine/dates/styles.css";
+import "@mantine/dropzone/styles.css";
+import "@mantine/tiptap/styles.css";
+import "../css/app.css";
+
+import "@mantine/core/styles.css";
+>>>>>>> dev
 
 import { createInertiaApp } from "@inertiajs/react";
 import { Notifications } from "@mantine/notifications";
