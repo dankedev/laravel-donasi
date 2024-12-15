@@ -1,4 +1,4 @@
-import { themeConfig } from "@/Components/theme/theme-config";
+import { themeConfig } from "@/components/theme/theme-config";
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";

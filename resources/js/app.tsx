@@ -13,7 +13,7 @@ import { createInertiaApp } from "@inertiajs/react";
 import { Notifications } from "@mantine/notifications";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot, hydrateRoot } from "react-dom/client";
-import ThemeProvider from "./Components/theme/theme-provider";
+import ThemeProvider from "./components/theme/theme-provider";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
