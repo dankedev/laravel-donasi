@@ -5,7 +5,7 @@ const inputDefaultProps = {
     size: "md",
 };
 
-export const theme = createTheme({
+export const themeConfig = createTheme({
     primaryColor: "blue",
     // colorScheme: "light",
     components: {

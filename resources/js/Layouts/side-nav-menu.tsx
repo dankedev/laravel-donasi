@@ -1,5 +1,6 @@
 import { AppShell, Code, ScrollArea } from "@mantine/core";
 import { LinksGroup } from "./links-group";
+// import { navLinks } from "./nav-links";
 import { navLinks } from "./nav-links";
 import classes from "./side-nav-menu..module.css";
 import { UserButton } from "./user-button";
@@ -12,7 +13,9 @@ export function SideNavMenu() {
             <AppShell.Section className="border-b p-6">
                 <div className="flex w-full justify-between">
                     <span className="text-2xl font-bold">Donasi</span>
-                    <Code fw={700}>v0.1.2</Code>
+                    <div className="flex items-center">
+                        <Code fw={700}>v0.1.2</Code>
+                    </div>
                 </div>
             </AppShell.Section>
 
