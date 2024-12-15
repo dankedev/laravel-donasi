@@ -4,12 +4,14 @@ RUN install-php-extensions \
     pcntl
     # Add other PHP extensions here...
 
+RUN /bin/sh -c composer install --ignore-platform-reqs --no-dev -a
+# RUN frankenphp php-cli artisan optimize
+# RUN frankenphp php-cli artisan migrate
+# RUN frankenphp php-cli artisan key:generate
+
 COPY . /app
 
-RUN /bin/sh -c composer install --ignore-platform-reqs --no-dev -a
-RUN frankenphp php-cli artisan optimize
-RUN frankenphp php-cli artisan migrate
-RUN frankenphp php-cli artisan key:generate
+
 
 # RUN frankenphp php-server
 
