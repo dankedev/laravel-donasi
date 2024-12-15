@@ -3,22 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-<<<<<<< HEAD
-=======
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
->>>>>>> dev
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-<<<<<<< HEAD
-
-class User extends Authenticatable
-{
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
-=======
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword  as AuthCanResetPassword;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -29,7 +19,6 @@ class User extends Authenticatable implements MustVerifyEmail, AuthCanResetPassw
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable, CanResetPassword;
 
->>>>>>> dev
 
     /**
      * The attributes that are mass assignable.
