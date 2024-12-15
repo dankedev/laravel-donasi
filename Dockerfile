@@ -6,7 +6,7 @@ RUN install-php-extensions \
 
 COPY . /app
 
-RUN composer install --ignore-platform-reqs --no-dev -a
+RUN /bin/sh -c composer install --ignore-platform-reqs --no-dev -a
 RUN frankenphp php-cli artisan optimize
 RUN frankenphp php-cli artisan migrate
 RUN frankenphp php-cli artisan key:generate
