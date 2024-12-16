@@ -1,5 +1,13 @@
 FROM --platform=linux/amd64 dunglas/frankenphp:static-builder
 
+
+RUN install-php-extensions \
+	pdo_mysql \
+	gd \
+	intl \
+	zip \
+	opcache
+
 # Copy your app
 WORKDIR /go/src/app/dist/app
 COPY . .
