@@ -17,10 +17,10 @@ RUN sed -i'' -e 's/^APP_ENV=.*/APP_ENV=production/' -e 's/^APP_DEBUG=.*/APP_DEBU
 
 # Install the dependencies
 RUN composer install --ignore-platform-reqs --no-dev -a
-RUN frankenphp php-cli artisan migrate --step
+RUN  php-cli artisan migrate --step
 
-RUN frankenphp php-cli artisan optimize
-RUN frankenphp php-cli artisan key:generate
+# RUN frankenphp php-cli artisan optimize
+# RUN frankenphp php-cli artisan key:generate
 
 # Build the static binary
 WORKDIR /go/src/app/
