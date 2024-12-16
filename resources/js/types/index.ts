@@ -1,6 +1,4 @@
 export * from "./page";
-<<<<<<< HEAD
-=======
+export * from "./pagination-response";
 export * from "./request";
->>>>>>> dev
 export * from "./user";

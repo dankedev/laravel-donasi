@@ -21,16 +21,13 @@ export default function AppLayout({ children, header }: PropsWithChildren<{ head
             <AppShell.Header>
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                    <span>Donasi</span>
                 </Group>
+                {header}
             </AppShell.Header>
             <AppShell.Navbar>
                 <SideNavMenu />
             </AppShell.Navbar>
-            <AppShell.Main>
-                {header}
-                {children}
-            </AppShell.Main>
+            <AppShell.Main>{children}</AppShell.Main>
         </AppShell>
     );
 }

@@ -1,5 +1,5 @@
 import { utcDateTime } from "@/utils";
-import { Card, Checkbox, NumberInput, Stack, Text, UnstyledButton } from "@mantine/core";
+import { Card, Checkbox, NumberInput, Stack, Text, TextInput, UnstyledButton } from "@mantine/core";
 import { DateTimePicker } from "@mantine/dates";
 import { useRef } from "react";
 import { useCampaignEditor } from "./editor-provider";
@@ -49,7 +49,7 @@ export function CampaignSettingEditor() {
                         value={
                             form.values.start_date && new Date(utcDateTime(form.values.start_date))
                         }
-                        onChange={(a) => form.setFieldValue("start_date", a)}
+                        onChange={(a) => form.setFieldValue("start_date", a as Date)}
                     />
                     <DateTimePicker
                         disabled={!form.values.start_date}
@@ -63,36 +63,39 @@ export function CampaignSettingEditor() {
                             form.values.finish_date &&
                             new Date(utcDateTime(form.values.finish_date))
                         }
-                        onChange={(a) => form.setFieldValue("finish_date", a)}
+                        onChange={(a) => form.setFieldValue("finish_date", a as Date)}
                     />
                 </Stack>
             </Card.Section>
+            <Stack>
+                <TextInput label="Slug" {...form.getInputProps("slug")} />
 
-            <UnstyledButton
-                className="flex w-full items-center rounded-md border-gray-300 bg-gray-50 p-6 hover:bg-gray-100"
-                type="button"
-                p="lg"
-                onClick={() => checkboxRef?.current?.click()}
-            >
-                <Checkbox
-                    ref={checkboxRef}
-                    tabIndex={-1}
-                    size="md"
-                    mr="xl"
-                    styles={{ input: { cursor: "pointer" } }}
-                    aria-hidden
-                    {...form.getInputProps("publised", { type: "checkbox" })}
-                />
+                <UnstyledButton
+                    className="flex w-full items-center rounded-md border-gray-300 bg-gray-50 p-6 hover:bg-gray-100"
+                    type="button"
+                    p="lg"
+                    onClick={() => checkboxRef?.current?.click()}
+                >
+                    <Checkbox
+                        ref={checkboxRef}
+                        tabIndex={-1}
+                        size="md"
+                        mr="xl"
+                        styles={{ input: { cursor: "pointer" } }}
+                        aria-hidden
+                        {...form.getInputProps("publised", { type: "checkbox" })}
+                    />
 
-                <div>
-                    <Text fw={500} mb={7} lh={1}>
-                        Publish
-                    </Text>
-                    <Text fz="sm" c="dimmed">
-                        Campaign tampil dipublik
-                    </Text>
-                </div>
-            </UnstyledButton>
+                    <div>
+                        <Text fw={500} mb={7} lh={1}>
+                            Publish
+                        </Text>
+                        <Text fz="sm" c="dimmed">
+                            Campaign tampil dipublik
+                        </Text>
+                    </div>
+                </UnstyledButton>
+            </Stack>
         </Card>
     );
 }

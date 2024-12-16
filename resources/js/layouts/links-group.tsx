@@ -15,7 +15,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
     const items = (hasLinks ? links : []).map((link) => (
         <Link
             className={cn(classes.link, {
-                [`font-bold text-blue-600 ${classes.activeLink}`]: current,
+                [classes.activeLink]: current,
             })}
             href={link?.link ? route(link?.link ?? "") : "#"}
             key={`${link.label}-${link.link}`}

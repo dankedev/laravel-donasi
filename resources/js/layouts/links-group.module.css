@@ -38,6 +38,6 @@
 
 .activeLink {
 	background-color: lightdark(var(--mantine-colors-gray-1), var(--mantine-colors-gray-9));
-	color: lightdark(var(--mantine-colors-white), var(--mantine-colors-black));
+	color: lightdark(var(--mantine-colors-white), var(--mantine-colors-blue));
 }
 

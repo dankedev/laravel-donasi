@@ -41,8 +41,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::prefix('campaign')->name('campaign.')->controller(CampaignEditorController::class)->group(function () {
 
             Route::get('/', 'index')->name('index');
-            Route::get('/editor', 'edit')->name('editor');
+            Route::get('/editor', 'edit')->name('edit');
             Route::post('/save', 'store')->name('store');
+            Route::post('/duplicate/{id}', 'duplicate')->name('duplicate');
             Route::patch('/update', 'store')->name('update');
         });
     });
