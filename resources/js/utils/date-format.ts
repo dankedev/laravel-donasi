@@ -21,7 +21,7 @@ export function dateFormat(d?: string | Date, format?: string) {
         .format(format ?? "DD, MMM YYYY");
 }
 
-export function dateDayFormat(d?: string | Date, format?: string) {
+export function dateDayFormat(d?: string | Date | null, format?: string) {
     const date = d ? toISODateString(d) : dayjs();
     return (
         dayjs(date)
