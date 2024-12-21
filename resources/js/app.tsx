@@ -1,3 +1,6 @@
+import "@mantine/core/styles.css";
+import "../css/app.css";
+
 import "@mantine/notifications/styles.css";
 import "@mantine/spotlight/styles.css";
 import "./bootstrap";
@@ -5,12 +8,8 @@ import "./bootstrap";
 import "@mantine/dates/styles.css";
 import "@mantine/dropzone/styles.css";
 import "@mantine/tiptap/styles.css";
-import "../css/app.css";
-
-import "@mantine/core/styles.css";
 
 import { createInertiaApp } from "@inertiajs/react";
-import { Notifications } from "@mantine/notifications";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import ThemeProvider from "./components/theme/theme-provider";
@@ -27,7 +26,6 @@ createInertiaApp({
                 el,
                 <ThemeProvider>
                     <App {...props} />
-                    <Notifications />
                 </ThemeProvider>
             );
             return;
@@ -36,7 +34,6 @@ createInertiaApp({
         createRoot(el).render(
             <ThemeProvider>
                 <App {...props} />
-                <Notifications />
             </ThemeProvider>
         );
     },

@@ -13,6 +13,7 @@ export interface CampaignProps {
     created_at: Date; // corresponds to the 'created_at' timestamp
     updated_at: Date; // corresponds to the 'updated_at' timestamp
     featured_image?: AssetStorage;
+    images?: AssetStorage[];
     [key: string]: FormValue;
 }
 

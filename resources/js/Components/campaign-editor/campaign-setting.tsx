@@ -1,13 +1,76 @@
 import { utcDateTime } from "@/utils";
 import { Card, Checkbox, NumberInput, Stack, Text, TextInput, UnstyledButton } from "@mantine/core";
 import { DateTimePicker } from "@mantine/dates";
-import { useRef } from "react";
+import { memo, useCallback } from "react";
 import { useCampaignEditor } from "./editor-provider";
 import { UploadFeaturedImage } from "./upload-feature-image";
 
+const MemoizedCheckbox = memo(function MemoizedCheckbox({
+    checked,
+    onChange,
+}: {
+    checked: boolean;
+    onChange: (checked: boolean) => void;
+}) {
+    return (
+        <Checkbox
+            checked={checked}
+            onChange={(e) => onChange(e.currentTarget.checked)}
+            size="md"
+            mr="xl"
+            styles={{ input: { cursor: "pointer" } }}
+            aria-hidden
+        />
+    );
+});
+
+const MemoizedDateTimePicker = memo(function MemoizedDateTimePicker({
+    label,
+    value,
+    onChange,
+    minDate,
+    disabled = false,
+}: {
+    label: string;
+    value: Date | null;
+    onChange: (date: Date | null) => void;
+    minDate?: Date;
+    disabled?: boolean;
+}) {
+    return (
+        <DateTimePicker
+            label={label}
+            clearable
+            disabled={disabled}
+            minDate={minDate}
+            placeholder="Pilih tanggal"
+            value={value}
+            onChange={onChange}
+        />
+    );
+});
+
 export function CampaignSettingEditor() {
     const { form } = useCampaignEditor();
-    const checkboxRef = useRef<HTMLInputElement | null>(null);
+    // const checkboxRef = useRef<HTMLInputElement | null>(null);
+
+    const handleCheckboxChange = useCallback(
+        (checked: boolean) => {
+            form.setFieldValue("publised", checked);
+        },
+        [form]
+    );
+
+    const handleStartDateChange = useCallback(
+        (date: Date | null) => form.setFieldValue("start_date", date),
+        [form]
+    );
+
+    const handleEndDateChange = useCallback(
+        (date: Date | null) => form.setFieldValue("finish_date", date),
+        [form]
+    );
+
     return (
         <Card bg="gray.0" className="sticky top-0 z-50">
             <UploadFeaturedImage
@@ -40,30 +103,28 @@ export function CampaignSettingEditor() {
 
             <Card.Section inheritPadding py="lg" withBorder mb={30}>
                 <Stack>
-                    <DateTimePicker
+                    <MemoizedDateTimePicker
                         label="Tanggal Campaign dimulai"
-                        clearable
-                        minDate={new Date()}
-                        placeholder="Pilih tanggal"
-                        // {...form.getInputProps("start_date")}
                         value={
-                            form.values.start_date && new Date(utcDateTime(form.values.start_date))
+                            form.values.start_date
+                                ? new Date(utcDateTime(form.values.start_date))
+                                : null
                         }
-                        onChange={(a) => form.setFieldValue("start_date", a as Date)}
+                        onChange={handleStartDateChange}
+                        minDate={new Date()}
                     />
-                    <DateTimePicker
-                        disabled={!form.values.start_date}
+                    <MemoizedDateTimePicker
+                        label="Tanggal Campaign Selesai"
+                        value={
+                            form.values.finish_date
+                                ? new Date(utcDateTime(form.values.finish_date))
+                                : null
+                        }
+                        onChange={handleEndDateChange}
                         minDate={
                             form.values.start_date ? new Date(form.values.start_date) : new Date()
                         }
-                        label="Tanggal Campaign Selesai"
-                        clearable
-                        placeholder="Pilih tanggal"
-                        value={
-                            form.values.finish_date &&
-                            new Date(utcDateTime(form.values.finish_date))
-                        }
-                        onChange={(a) => form.setFieldValue("finish_date", a as Date)}
+                        disabled={!form.values.start_date}
                     />
                 </Stack>
             </Card.Section>
@@ -74,16 +135,11 @@ export function CampaignSettingEditor() {
                     className="flex w-full items-center rounded-md border-gray-300 bg-gray-50 p-6 hover:bg-gray-100"
                     type="button"
                     p="lg"
-                    onClick={() => checkboxRef?.current?.click()}
+                    onClick={() => handleCheckboxChange(!form.values.publised)}
                 >
-                    <Checkbox
-                        ref={checkboxRef}
-                        tabIndex={-1}
-                        size="md"
-                        mr="xl"
-                        styles={{ input: { cursor: "pointer" } }}
-                        aria-hidden
-                        {...form.getInputProps("publised", { type: "checkbox" })}
+                    <MemoizedCheckbox
+                        checked={form.values.publised as boolean}
+                        onChange={handleCheckboxChange}
                     />
 
                     <div>

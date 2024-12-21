@@ -33,7 +33,7 @@ export default function CampaignPage({ data }: { data: PaginationResponse<Campai
                                     />
                                     <div className="flex flex-col gap-3">
                                         <h3 className="font-bold">{item.title}</h3>
-                                        <Badge>Kategori</Badge>
+                                        <Badge>{item.form_type}</Badge>
                                     </div>
                                 </div>
                             </div>
