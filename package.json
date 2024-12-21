@@ -72,5 +72,8 @@
         "recharts": "2",
         "tailwind-merge": "^2.5.5",
         "ziggy-js": "^2.4.1"
+    },
+    "engines": {
+        "node": "20.18.1"
     }
 }

@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:experimental
 
 ARG PHP_VERSION=8.2
-ARG NODE_VERSION=18
+ARG NODE_VERSION=20
 FROM ubuntu:22.04 as base
 LABEL fly_launch_runtime="laravel"
 
@@ -85,8 +85,8 @@ WORKDIR /app
 COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
-
-
+RUN node --version
+RUN yarn --version
 RUN yarn install --frozen-lockfile;
 RUN yarn build;
 # From our base container created above, we
