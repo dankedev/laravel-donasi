@@ -86,9 +86,9 @@ COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
 RUN node --version
-RUN yarn --version
+RUN yarn version
 RUN yarn install --frozen-lockfile;
-RUN yarn build;
+RUN yarn run build;
 # From our base container created above, we
 # create our final image, adding in static
 # assets that we generated above
