@@ -110,8 +110,8 @@ COPY --from=base /var/www/html/vendor /app/vendor
 #         npm run $ASSET_CMD; \
 #     fi;
 
-RUN yarn install --frozen-lockfile;
-RUN yarn build;
+RUN  npm install --legacy-peer-deps
+RUN  npm run build;
 
 # From our base container created above, we
 # create our final image, adding in static
