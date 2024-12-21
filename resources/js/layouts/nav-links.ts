@@ -8,27 +8,27 @@ export interface LinksGroupProps {
 }
 
 export const navLinks: LinksGroupProps[] = [
-    { label: "Dashboard", icon: House, link: "dashboard" },
+    { label: "Dashboard", icon: House, link: "admin.dashboard" },
     {
         label: "Campaign",
         icon: Gift,
         initiallyOpened: true,
         links: [
-            { label: "Semua Campaign", link: "editor.campaign.index" },
-            { label: "Editor", link: "editor.campaign.edit" },
+            { label: "Semua Campaign", link: "admin.campaign.index" },
+            { label: "Editor", link: "admin.campaign.edit" },
         ],
     },
 
     { label: "Analytics", icon: ChartArea },
     { label: "Contracts", icon: Contact },
-    { label: "Settings", icon: Settings2, link: "setting.index" },
+    { label: "Settings", icon: Settings2, link: "admin.setting.index" },
     {
         label: "Security",
         icon: Lock,
         links: [
-            { label: "Enable 2FA", link: "dashboard" },
-            { label: "Change password", link: "dashboard" },
-            { label: "Recovery codes", link: "dashboard" },
+            { label: "Enable 2FA", link: "admin.dashboard" },
+            { label: "Change password", link: "admin.dashboard" },
+            { label: "Recovery codes", link: "admin.dashboard" },
         ],
     },
 ];

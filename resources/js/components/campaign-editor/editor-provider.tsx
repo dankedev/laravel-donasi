@@ -39,7 +39,7 @@ export function CampaignFormProvider({ children, data }: PropsWithChildren<Edito
 
     const handleOnSubmit = (value: CampaignProps) => {
         if (value.id) {
-            form.patch(route("editor.campaign.update"), {
+            form.patch(route("admin.campaign.update"), {
                 onSuccess: () =>
                     notifications.show({
                         title: "Campaign Update",
@@ -48,7 +48,7 @@ export function CampaignFormProvider({ children, data }: PropsWithChildren<Edito
                     }),
             });
         } else {
-            form.post(route("editor.campaign.store"), {
+            form.post(route("admin.campaign.store"), {
                 onSuccess: () =>
                     notifications.show({
                         title: "Campaign Created",

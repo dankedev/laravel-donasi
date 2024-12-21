@@ -1,0 +1,1 @@
+import{j as s,M as r}from"./app-DG_quuA_.js";import{A as a}from"./app-layout-BjFVCOca.js";import"./Group-CeJplS76.js";import"./Button-CtqclE1W.js";import"./FocusTrap-CbdYIe9M.js";import"./ActionIcon-jh8LysN7.js";function d(){return s.jsxs(a,{children:[s.jsx(r,{title:"Dashboard"}),s.jsx("div",{className:"py-12",children:"asdsadsa"})]})}export{d as default};

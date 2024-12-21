@@ -8,6 +8,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -15,38 +21,6 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
-
-    Route::controller(AssetStorageController::class)->prefix("upload")->group(function () {
-        // Route::post('/{id}', [AssetStorageController::class, ' "upload"'])->name('upload');
-        Route::post('/', "upload")->name('upload');
-    });
-
-    Route::prefix('setting')->name('setting.')->controller(SiteConfigController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-    });
-
-    Route::prefix('editor')->name('editor.')->group(function () {
-        Route::prefix('campaign')->name('campaign.')->controller(CampaignEditorController::class)->group(function () {
-
-            Route::get('/', 'index')->name('index');
-            Route::get('/editor', 'edit')->name('edit');
-            Route::post('/save', 'store')->name('store');
-            Route::post('/duplicate/{id}', 'duplicate')->name('duplicate');
-            Route::patch('/update', 'store')->name('update');
-        });
-    });
-});
-
-require __DIR__ . '/auth.php';

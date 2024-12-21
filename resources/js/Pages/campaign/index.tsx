@@ -68,7 +68,7 @@ export default function CampaignPage({ data }: { data: PaginationResponse<Campai
                                         <Menu.Label>Aksi</Menu.Label>
                                         <Menu.Item
                                             component={Link}
-                                            href={route("editor.campaign.edit", { id: item.id })}
+                                            href={route("admin.campaign.edit", { id: item.id })}
                                         >
                                             Edit
                                         </Menu.Item>
@@ -89,7 +89,7 @@ export default function CampaignPage({ data }: { data: PaginationResponse<Campai
                                                     },
                                                     onConfirm: () =>
                                                         router.post(
-                                                            route("editor.campaign.duplicate", {
+                                                            route("admin.campaign.duplicate", {
                                                                 id: item.id,
                                                             })
                                                         ),

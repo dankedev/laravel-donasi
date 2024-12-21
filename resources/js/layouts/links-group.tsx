@@ -1,11 +1,29 @@
-import { Box, Collapse, Group, ThemeIcon, UnstyledButton } from "@mantine/core";
+import { Collapse, Group, ThemeIcon, UnstyledButton } from "@mantine/core";
 // import { IconCalendarStats, IconChevronRight } from '@tabler/icons-react';
 import { cn } from "@/utils/helper";
 import { Link } from "@inertiajs/react";
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, LucideProps } from "lucide-react";
+import { memo, useState } from "react";
 import classes from "./links-group.module.css";
 import { LinksGroupProps } from "./nav-links";
+
+// Create a memoized version of the icon component
+const MemoizedThemeIcon = memo(
+    ({
+        variant,
+        current,
+        Icon,
+    }: {
+        variant: string;
+        current: boolean;
+        Icon: React.FC<LucideProps>;
+    }) => (
+        <ThemeIcon variant={variant} size={30} radius={current ? "md" : undefined}>
+            <Icon className="size-6" />
+        </ThemeIcon>
+    )
+);
+MemoizedThemeIcon.displayName = "MemoizedThemeIcon";
 
 export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: LinksGroupProps) {
     const hasLinks = Array.isArray(links);
@@ -34,14 +52,16 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
                     })}
                     // className={`${classes.control} ${current &&  "bg-white shadow-sm rounded-md"}`}
                 >
-                    <Group gap={0} justify="space-between">
-                        <Box style={{ display: "flex", alignItems: "center" }}>
-                            <ThemeIcon variant={current ? "filled" : "light"} size={30} radius="md">
-                                <Icon className="text-xl" />
-                            </ThemeIcon>
-                            <Box ml="md">{label} </Box>
-                        </Box>
-                    </Group>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <MemoizedThemeIcon
+                                variant={current ? "filled" : "subtle"}
+                                current={current}
+                                Icon={Icon}
+                            />
+                            <div className="ml-2 text-sm">{label} </div>
+                        </div>
+                    </div>
                 </Link>
             ) : (
                 <UnstyledButton
@@ -54,12 +74,10 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
                     className={classes.control}
                 >
                     <Group gap={0} justify="space-between">
-                        <Box style={{ display: "flex", alignItems: "center" }}>
-                            <ThemeIcon variant="light" size={30}>
-                                <Icon className="text-xl" />
-                            </ThemeIcon>
-                            <Box ml="md">{label}</Box>
-                        </Box>
+                        <div className="flex items-center">
+                            <MemoizedThemeIcon variant="subtle" current={false} Icon={Icon} />
+                            <div className="m-2">{label}</div>
+                        </div>
                         {hasLinks && (
                             <ChevronDown
                                 className={cn("transition-transform ease-linear", {

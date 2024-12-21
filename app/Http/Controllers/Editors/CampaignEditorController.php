@@ -32,7 +32,7 @@ class CampaignEditorController extends Controller
         $newCampaign->slug = Str::slug("COPY-" . $campaign->slug); // Duplicate the slug
         $newCampaign->title = Str::title("COPY " . $campaign->title); // Duplicate the slug
         $newCampaign->save();
-        return Redirect::route('editor.campaign.edit', ["id" => $newCampaign->id]);
+        return Redirect::route('admin.campaign.edit', ["id" => $newCampaign->id]);
     }
 
     /**
@@ -79,7 +79,7 @@ class CampaignEditorController extends Controller
         $campaign->finish_date = Carbon::parse($request->get('finish_date'))->format('Y-m-d H:i:s');
         // dd($campaign);
         $campaign->save();
-        return Redirect::route('editor.campaign.edit', ["id" => $campaign->id]);
+        return Redirect::route('admin.campaign.edit', ["id" => $campaign->id]);
     }
 
     /**
