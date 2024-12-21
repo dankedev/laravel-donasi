@@ -14,11 +14,7 @@ import { CampaignProps } from "@/types/campaign";
 import { Head } from "@inertiajs/react";
 import { Button } from "@mantine/core";
 
-export default function CampaignEditor({
-    data,
-}: {
-    data: CampaignProps;
-}) {
+export default function CampaignEditor({ data }: { data: CampaignProps }) {
     return (
         <CampaignFormProvider data={data}>
             <Head title={data?.title ?? "Campaign Editor"} />
