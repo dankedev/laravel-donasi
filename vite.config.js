@@ -4,18 +4,14 @@ import laravel from "laravel-vite-plugin";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-    server: {
-        hmr: {
-            host: "localhost",
-        },
-    },
+
     plugins: [
         laravel({
             input: "resources/js/app.tsx",
             // ssr: "resources/js/ssr.tsx",
             refresh: true,
         }),
-        MillionLint.vite({ auto: true, rsc: false, turbo: false }),
+        MillionLint.vite({ auto: true }),
         react(),
     ],
 });
