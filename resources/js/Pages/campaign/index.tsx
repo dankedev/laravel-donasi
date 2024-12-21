@@ -9,7 +9,7 @@ import { CalendarClock, Ellipsis } from "lucide-react";
 export default function CampaignPage({ data }: { data: PaginationResponse<CampaignProps> }) {
     const campaigns = data?.data;
     return (
-        <AppLayout>
+        <AppLayout header={<span>List Campaign Donasi</span>}>
             <Head title="List Campaign Donasi" />
             <div className="table w-full">
                 <div className="mb-11 table-header-group">

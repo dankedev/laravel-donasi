@@ -10,7 +10,7 @@ export default defineConfig({
             // ssr: "resources/js/ssr.tsx",
             refresh: true,
         }),
-        MillionLint.vite({ auto: true }),
+        MillionLint.vite({ auto: true, rsc: false, turbo: false }),
         react(),
     ],
 });
