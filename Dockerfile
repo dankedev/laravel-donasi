@@ -85,10 +85,10 @@ WORKDIR /app
 COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
-RUN node --version
-RUN npm --version
-RUN  npm install --legacy-peer-deps
-RUN  npm run build;
+# RUN node --version
+# RUN npm --version
+# RUN  npm install --legacy-peer-deps
+# RUN  npm run build;
 # From our base container created above, we
 # create our final image, adding in static
 # assets that we generated above
