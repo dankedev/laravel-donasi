@@ -42,7 +42,14 @@ export default function CampaignPage({ data }: { data: PaginationResponse<Campai
                                     />
                                     <div className="flex flex-col gap-3">
                                         <h3 className="font-bold">{item.title}</h3>
-                                        <Badge>{item.form_type}</Badge>
+                                        <div className="flex items-center gap-2">
+                                            <Badge size="xs" color="gray">
+                                                {item.form_type}
+                                            </Badge>
+                                            {item?.category && (
+                                                <Badge size="xs">{item.category?.name}</Badge>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

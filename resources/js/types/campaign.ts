@@ -1,4 +1,5 @@
 import { AssetStorage } from "./asset";
+import { CategoryProps } from "./category";
 import { FormValue } from "./request";
 
 export interface CampaignProps {
@@ -15,5 +16,7 @@ export interface CampaignProps {
     updated_at: Date; // corresponds to the 'updated_at' timestamp
     featured_image?: AssetStorage;
     images?: AssetStorage[];
+    category?: CategoryProps;
+    category_id?: number | string;
     [key: string]: FormValue;
 }

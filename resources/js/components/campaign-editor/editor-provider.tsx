@@ -26,12 +26,9 @@ export function CampaignFormProvider({ children, data }: PropsWithChildren<Edito
             initializeFormValues<CampaignProps>(data).then((a) => {
                 return form.setValues({
                     ...a,
-                    start_date: form.values.start_date
-                        ? new Date(utcDateTime(form.values.start_date))
-                        : null,
-                    finish_date: form.values.finish_date
-                        ? new Date(utcDateTime(form.values.finish_date))
-                        : null,
+                    start_date: data?.start_date ? new Date(utcDateTime(data.start_date)) : null,
+                    finish_date: data?.finish_date ? new Date(utcDateTime(data.finish_date)) : null,
+                    category_id: data?.category_id?.toString(),
                 });
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps

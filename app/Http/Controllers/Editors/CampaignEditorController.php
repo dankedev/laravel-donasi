@@ -19,7 +19,7 @@ class CampaignEditorController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::with(['featuredImage'])->paginate(30);
+        $campaigns = Campaign::with(['featuredImage', 'category'])->paginate(30);
         return Inertia::render('campaign/index', [
             "data" => $campaigns
         ]);
@@ -74,6 +74,7 @@ class CampaignEditorController extends Controller
         $campaign->publised = $request->get('publised');
 
         $campaign->goal = $request->get('goal');
+        $campaign->category_id = $request->has('category_id') ? (int)$request->get('category_id') : null;
 
         $campaign->start_date = Carbon::parse($request->get('start_date'))->format('Y-m-d H:i:s');
 
@@ -93,12 +94,13 @@ class CampaignEditorController extends Controller
         $id = $request->has('id') ? (int)$request->get('id') : null;
 
         if ($id) {
-            $campaign = Campaign::with(['featuredImage'])->findOrFail($id);
+            $campaign = Campaign::with(['featuredImage', 'category'])->findOrFail($id);
         }
         // dd($campaign);
-
+        $categories = Category::all();
         return Inertia::render('campaign/editor', [
-            "data" => $campaign
+            "data" => $campaign,
+            "categories" => $categories
         ]);
     }
 

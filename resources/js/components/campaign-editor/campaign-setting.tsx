@@ -72,7 +72,7 @@ export function CampaignSettingEditor() {
     );
 
     return (
-        <Card bg="gray.0" className="sticky top-0 z-50">
+        <Card bg="gray.0" className="stickyx top-0 z-50">
             <UploadFeaturedImage
                 directory="featured"
                 onSetValue={(id) => {
@@ -130,7 +130,6 @@ export function CampaignSettingEditor() {
             </Card.Section>
             <Stack>
                 <TextInput label="Slug" {...form.getInputProps("slug")} />
-
                 <UnstyledButton
                     className="flex w-full items-center rounded-md border-gray-300 bg-gray-50 p-6 hover:bg-gray-100"
                     type="button"

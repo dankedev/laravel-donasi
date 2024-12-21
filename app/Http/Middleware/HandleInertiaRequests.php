@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Campaigns\Campaign;
+use App\Models\Campaigns\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
@@ -41,6 +42,7 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'campaigns' => Campaign::select('id', 'title', 'slug', 'featured_id')->with('featuredImage')->get(),
+            'categories' => Category::select('id', 'name', 'slug')->get(),
         ];
     }
 }

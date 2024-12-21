@@ -1,4 +1,5 @@
 // import { UploadFeaturedImage } from "@/components/campaign-editor/upload-feature-image";
+import { UploadFeaturedImage } from "@/components/campaign-editor/upload-feature-image";
 import { useRequest } from "@/hooks/use-request";
 import { CategoryProps } from "@/types";
 import { initializeFormValues } from "@/utils";
@@ -86,7 +87,7 @@ export function FormCategory({ category }: { category?: CategoryProps }) {
                         />
                         <TextInput label="Blog URL" size="lg" {...form.getInputProps("url")} />
 
-                        {/* <UploadFeaturedImage
+                        <UploadFeaturedImage
                             directory="category"
                             onSetValue={(id) => {
                                 form.setFieldValue("featured_id", id);
@@ -94,7 +95,7 @@ export function FormCategory({ category }: { category?: CategoryProps }) {
                             postId={Number(form?.values?.id)}
                             placeholder="Disarankan 650x650px atau 1x1"
                             currentImageUrl={form.values?.featured_image?.url}
-                        /> */}
+                        />
                         <div className="flex w-full items-center gap-4">
                             <Button type="submit" size="lg" fullWidth>
                                 Buat Kategori

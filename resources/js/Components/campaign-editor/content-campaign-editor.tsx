@@ -1,3 +1,4 @@
+import { usePage } from "@inertiajs/react";
 import { Card, Radio, Stack, TextInput } from "@mantine/core";
 import { Link, RichTextEditor } from "@mantine/tiptap";
 import SubScript from "@tiptap/extension-subscript";
@@ -13,6 +14,7 @@ import { useCampaignEditor } from "./editor-provider";
 
 export function ContentCampaignEditor() {
     const { form } = useCampaignEditor();
+    const { categories } = usePage().props;
 
     const editor = useEditor({
         extensions: [
@@ -110,22 +112,41 @@ export function ContentCampaignEditor() {
                     <h2 className="font-bold">Pengaturan Campaign</h2>
                 </Card.Section>
                 <Card.Section p="lg" withBorder>
-                    <Radio.Group
-                        {...form.getInputProps("form_type")}
-                        label="Jenis Campaign"
-                        description="Sesuaikan jenis campaign anda"
-                        withAsterisk
-                    >
-                        <Stack mt="xs">
-                            {formTypes.map((item) => (
-                                <Radio
-                                    key={`radio-form-type-${item.value}`}
-                                    value={item.value}
-                                    label={item.label}
-                                />
-                            ))}
-                        </Stack>
-                    </Radio.Group>
+                    <div className="grid grid-cols-2 gap-10">
+                        <Radio.Group
+                            {...form.getInputProps("form_type")}
+                            label="Jenis Campaign"
+                            description="Sesuaikan jenis campaign anda"
+                            withAsterisk
+                        >
+                            <Stack mt="xs">
+                                {formTypes.map((item) => (
+                                    <Radio
+                                        key={`radio-form-type-${item.value}`}
+                                        value={item.value}
+                                        label={item.label}
+                                    />
+                                ))}
+                            </Stack>
+                        </Radio.Group>
+
+                        <Radio.Group
+                            {...form.getInputProps("category_id")}
+                            label="Category"
+                            description="Pilih kategori campaign anda"
+                            withAsterisk
+                        >
+                            <Stack mt="xs">
+                                {categories?.map((item) => (
+                                    <Radio
+                                        key={`radio-category-type-${item.slug}`}
+                                        value={item.id?.toString()}
+                                        label={item.name}
+                                    />
+                                ))}
+                            </Stack>
+                        </Radio.Group>
+                    </div>
                 </Card.Section>
             </Card>
         </Stack>
