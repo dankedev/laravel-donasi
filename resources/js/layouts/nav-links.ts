@@ -15,7 +15,7 @@ export const navLinks: LinksGroupProps[] = [
         initiallyOpened: true,
         links: [
             { label: "Semua Campaign", link: "admin.campaign.index" },
-            { label: "Editor", link: "admin.campaign.edit" },
+            { label: "Category", link: "admin.campaign.category.index" },
         ],
     },
 

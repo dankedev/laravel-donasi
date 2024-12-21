@@ -3,13 +3,22 @@ import { PaginationResponse } from "@/types";
 import { CampaignProps } from "@/types/campaign";
 import { dateDayFormat } from "@/utils";
 import { Head, Link, router } from "@inertiajs/react";
-import { ActionIcon, Badge, Image, Menu, NumberFormatter, Text } from "@mantine/core";
+import { ActionIcon, Badge, Button, Image, Menu, NumberFormatter, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
 import { CalendarClock, Ellipsis } from "lucide-react";
 export default function CampaignPage({ data }: { data: PaginationResponse<CampaignProps> }) {
     const campaigns = data?.data;
     return (
-        <AppLayout header={<span>List Campaign Donasi</span>}>
+        <AppLayout
+            header={
+                <div className="flex w-full items-center justify-between">
+                    <span>List Campaign Donasi</span>
+                    <Button component={Link} href={route("admin.campaign.edit")}>
+                        Tambah Campaign
+                    </Button>
+                </div>
+            }
+        >
             <Head title="List Campaign Donasi" />
             <div className="table w-full">
                 <div className="mb-11 table-header-group">

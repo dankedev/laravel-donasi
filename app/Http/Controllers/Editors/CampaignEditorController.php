@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Editors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaigns\Campaign;
+use App\Models\Campaigns\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
@@ -82,13 +83,7 @@ class CampaignEditorController extends Controller
         return Redirect::route('admin.campaign.edit', ["id" => $campaign->id]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Campaign $campaign)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

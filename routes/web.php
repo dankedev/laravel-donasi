@@ -4,6 +4,7 @@ use App\Http\Controllers\AssetStorageController;
 use App\Http\Controllers\Editors\CampaignEditorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteConfigController;
+use App\Http\Controllers\WebDonasiController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,13 +15,18 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('home');
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// })->name('home');
 
 
+Route::get('/', [WebDonasiController::class, 'index'])->name('home');
+
+Route::name('campaign.')->group(function () {
+    Route::get('/{slug}', [WebDonasiController::class, 'show'])->name('show');
+});

@@ -1,3 +1,4 @@
+import { AssetStorage } from "./asset";
 import { FormValue } from "./request";
 
 export interface CampaignProps {
@@ -16,13 +17,3 @@ export interface CampaignProps {
     images?: AssetStorage[];
     [key: string]: FormValue;
 }
-
-export type AssetStorage = {
-    id: number;
-    path: string;
-    mimeType: string;
-    size: number;
-    url: string;
-    created_at: Date;
-    updated_at: Date;
-};
