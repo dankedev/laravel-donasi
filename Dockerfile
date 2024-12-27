@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:experimental
 
-ARG PHP_VERSION=8.2
+ARG PHP_VERSION=8.3
 ARG NODE_VERSION=20
 FROM ubuntu:22.04 as base
 LABEL fly_launch_runtime="laravel"
@@ -85,13 +85,14 @@ WORKDIR /app
 COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
-# RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
-# RUN node --version && npm --version
+RUN node --version && npm --version
 
-# RUN NODE_ENV=production npm run build --verbose
-RUN yarn install
-RUN yarn build
+RUN NODE_ENV=production npm run build --verbose
+
+# RUN yarn install
+# RUN  NODE_ENV=production yarn build
 
 FROM base
 
