@@ -85,15 +85,9 @@ WORKDIR /app
 COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
-
-RUN  npm install --legacy-peer-deps
-
-
-
-COPY --from=node_modules_go_brrr /var/www/html/node_modules ./node_modules
-# COPY . .
 # RUN node --version
 # RUN npm --version
+RUN  npm install --legacy-peer-deps;\
 RUN NODE_ENV=production npm run build
 # From our base container created above, we
 # create our final image, adding in static
