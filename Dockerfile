@@ -85,13 +85,12 @@ WORKDIR /app
 COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
-# RUN node --version
-# RUN npm --version
-RUN  npm install --legacy-peer-deps
-RUN NODE_ENV=production npm run build
-# From our base container created above, we
-# create our final image, adding in static
-# assets that we generated above
+RUN npm install --legacy-peer-deps
+
+RUN node --version && npm --version
+
+RUN NODE_ENV=production npm run build --verbose
+
 FROM base
 
 # Packages like Laravel Nova may have added assets to the public directory
