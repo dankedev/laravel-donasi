@@ -20,7 +20,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PHP_DISPLAY_ERRORS=Off \
     PHP_ERROR_REPORTING=22527 \
     PHP_MEMORY_LIMIT=256M \
-    PHP_MAX_EXECUTION_TIME=90 \
+    PHP_MAX_EXECUTION_TIME=390 \
     PHP_POST_MAX_SIZE=100M \
     PHP_UPLOAD_MAX_FILE_SIZE=100M \
     PHP_ALLOW_URL_FOPEN=Off
@@ -85,10 +85,17 @@ WORKDIR /app
 COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
+
+RUN  npm install --legacy-peer-deps
+
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+
 # RUN node --version
 # RUN npm --version
-# RUN  npm install --legacy-peer-deps
-# RUN  npm run build;
+RUN NODE_ENV=production npm run build
 # From our base container created above, we
 # create our final image, adding in static
 # assets that we generated above
