@@ -19,7 +19,7 @@ class CampaignEditorController extends Controller
      */
     public function index()
     {
-        $campaigns = Campaign::with(['featuredImage', 'category'])->paginate(30);
+        $campaigns = Campaign::with(['featuredImage', 'category'])->orderBy('created_at', 'desc')->paginate(30);
         return Inertia::render('campaign/index', [
             "data" => $campaigns
         ]);

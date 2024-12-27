@@ -57,7 +57,7 @@ export function UploadFeaturedImage({
             withCloseButton: false,
         });
 
-        const promise = axios.post(route("upload"), formData, {
+        const promise = axios.post(route("admin.upload"), formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 // "content-type": file?.type || "application/octet-stream",
