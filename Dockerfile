@@ -90,7 +90,7 @@ RUN  npm install --legacy-peer-deps
 
 
 
-COPY --from=base /app/node_modules ./node_modules
+COPY --from=base /var/www/html/node_modules ./node_modules
 COPY . .
 # RUN node --version
 # RUN npm --version
