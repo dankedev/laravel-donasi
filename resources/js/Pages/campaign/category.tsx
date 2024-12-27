@@ -30,7 +30,10 @@ export default function Category({ data }: { data: CategoryProps[] }) {
                                         key={item.slug}
                                         className="flex items-center justify-between bg-gray-50 px-4 py-3 hover:bg-gray-100"
                                     >
-                                        <span className="font-bold">{item.name}</span>
+                                       <div className="flex items-center gap-2 items-center">
+                                        <img src={item.featured_image?.url} className="size-10" alt={item.name}/>
+                                            <span className="font-bold">{item.name}</span>
+                                       </div>
                                         <Button
                                             variant="outline"
                                             size="compact-xs"
