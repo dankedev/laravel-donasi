@@ -28,3 +28,5 @@ frankenphp
 frankenphp-worker.php
 /.DS_Store/*
 /storage
+/.million
+/public/build
