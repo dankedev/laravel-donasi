@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Editors;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaigns\AssetStorage;
 use App\Models\Campaigns\Campaign;
 use App\Models\Campaigns\Category;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon; // Make sure to import Carbon
+use Illuminate\Support\Facades\Storage;
 
 class CampaignEditorController extends Controller
 {
@@ -57,6 +59,7 @@ class CampaignEditorController extends Controller
             'content' => ['required'],
             'goal' => ['required', 'integer'],
             'start_date' => 'required|date',
+            'category_id' => 'required|exists:categories,id',
             'finish_date' => 'required|date|after:start_date',
         ]);
 
@@ -115,8 +118,17 @@ class CampaignEditorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Campaign $campaign)
+    public function destroy(Campaign $campaign, $id)
     {
-        //
+        $campaign = Campaign::find($id);
+        $storage = Storage::disk('public');
+        $assets = AssetStorage::where('id', $campaign->featured_id)->first();
+        if ($assets) {
+            $storage->delete($assets->path);
+            $assets->delete();
+        }
+
+        $campaign->delete();
+        return Redirect::route('admin.campaign.index');
     }
 }

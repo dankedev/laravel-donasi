@@ -21,14 +21,14 @@ return Application::configure(basePath: dirname(__DIR__))
         Route::middleware('api')->name("api.")
         ->prefix('api')
         ->group(base_path('routes/api.php'));
-
+        Route::middleware('web')->name("admin.")->prefix("admin")
+        ->group(base_path("routes/admin.php"));
 
         Route::middleware("web")
             ->group(base_path("routes/auth.php"));
         Route::middleware("web")
         ->group(base_path("routes/web.php"));
-        Route::middleware('web')->name("admin.")->prefix("admin")
-        ->group(base_path("routes/admin.php"));
+
     }
     )
     ->withMiddleware(function (Middleware $middleware) {

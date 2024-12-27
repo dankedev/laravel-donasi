@@ -5,7 +5,7 @@ import { dateDayFormat } from "@/utils";
 import { Head, Link, router } from "@inertiajs/react";
 import { ActionIcon, Badge, Button, Image, Menu, NumberFormatter, Text } from "@mantine/core";
 import { modals } from "@mantine/modals";
-import { CalendarClock, Ellipsis } from "lucide-react";
+import { CalendarClock, Copy, Ellipsis, ExternalLink, FilePen, Trash } from "lucide-react";
 export default function CampaignPage({ data }: { data: PaginationResponse<CampaignProps> }) {
     const campaigns = data?.data;
     return (
@@ -85,6 +85,9 @@ export default function CampaignPage({ data }: { data: PaginationResponse<Campai
                                         <Menu.Item
                                             component={Link}
                                             href={route("admin.campaign.edit", { id: item.id })}
+                                            leftSection={
+                                                <FilePen className="size-3 text-gray-500" />
+                                            }
                                         >
                                             Edit
                                         </Menu.Item>
@@ -111,12 +114,49 @@ export default function CampaignPage({ data }: { data: PaginationResponse<Campai
                                                         ),
                                                 })
                                             }
+                                            leftSection={<Copy className="size-3 text-gray-500" />}
                                         >
                                             Duplikat
                                         </Menu.Item>
-                                        <Menu.Item>Lihat Campaign</Menu.Item>
+                                        <Menu.Item
+                                            leftSection={
+                                                <ExternalLink className="size-3 text-gray-500" />
+                                            }
+                                            component={Link}
+                                            href={route("campaign.show", { slug: item.slug })}
+                                            target="_blank"
+                                        >
+                                            Lihat Campaign
+                                        </Menu.Item>
                                         <Menu.Divider />
-                                        <Menu.Item>Hapus</Menu.Item>
+                                        <Menu.Item
+                                            color="red"
+                                            leftSection={<Trash className="size-3 text-red-500" />}
+                                            onClick={() => {
+                                                modals.openConfirmModal({
+                                                    title: "Yakin....?",
+                                                    children: (
+                                                        <Text>
+                                                            Apakah anda yakin akan menghapus
+                                                            campaign <strong>{item.title}</strong>
+                                                            ini?
+                                                        </Text>
+                                                    ),
+                                                    labels: {
+                                                        confirm: "In syaa Allah",
+                                                        cancel: "Gak jadi",
+                                                    },
+                                                    onConfirm: () =>
+                                                        router.delete(
+                                                            route("admin.campaign.destroy", {
+                                                                id: item.id,
+                                                            })
+                                                        ),
+                                                });
+                                            }}
+                                        >
+                                            Hapus
+                                        </Menu.Item>
                                     </Menu.Dropdown>
                                 </Menu>
                             </div>

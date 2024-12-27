@@ -1,5 +1,5 @@
 import { utcDateTime } from "@/utils";
-import { Card, Checkbox, NumberInput, Stack, Text, UnstyledButton } from "@mantine/core";
+import { Button, Card, Checkbox, NumberInput, Stack, Text, UnstyledButton } from "@mantine/core";
 import { DateTimePicker } from "@mantine/dates";
 import { useRef } from "react";
 import { useCampaignEditor } from "./editor-provider";
@@ -93,6 +93,12 @@ export function CampaignSettingEditor() {
                     </Text>
                 </div>
             </UnstyledButton>
+
+            <div className="py-12">
+                <Button type="submit" fullWidth size="lg">
+                    Simpan Campaign
+                </Button>
+            </div>
         </Card>
     );
 }

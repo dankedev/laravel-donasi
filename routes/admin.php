@@ -12,7 +12,7 @@ use Inertia\Inertia;
 //     return Inertia::render('Admin/Index');
 // })->name('admin.index');
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
@@ -45,6 +45,7 @@ Route::prefix('campaign')->name('campaign.')->controller(CampaignEditorControlle
     Route::post('/save', 'store')->name('store');
     Route::post('/duplicate/{id}', 'duplicate')->name('duplicate');
     Route::patch('/update', 'store')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('destroy');
 
     Route::prefix('category')->name('category.')->controller(CategoryEditorController::class)->group(function () {
         Route::get('/', 'index')->name('index');

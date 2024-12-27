@@ -26,6 +26,7 @@ export function CampaignFormProvider({ children, data }: PropsWithChildren<Edito
             initializeFormValues<CampaignProps>(data).then((a) => {
                 return form.setValues({
                     ...a,
+                    category_id: a.category_id?.toString(),
                     start_date: form.values.start_date
                         ? new Date(utcDateTime(form.values.start_date))
                         : null,

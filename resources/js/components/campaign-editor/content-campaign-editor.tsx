@@ -1,4 +1,5 @@
-import { Card, Radio, Stack, TextInput } from "@mantine/core";
+import { usePage } from "@inertiajs/react";
+import { Card, Radio, SimpleGrid, Stack, TextInput } from "@mantine/core";
 import { Link, RichTextEditor } from "@mantine/tiptap";
 import SubScript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
@@ -13,6 +14,7 @@ import { useCampaignEditor } from "./editor-provider";
 
 export function ContentCampaignEditor() {
     const { form } = useCampaignEditor();
+    const categories = usePage().props.categories;
 
     const editor = useEditor({
         extensions: [
@@ -110,22 +112,40 @@ export function ContentCampaignEditor() {
                     <h2 className="font-bold">Pengaturan Campaign</h2>
                 </Card.Section>
                 <Card.Section p="lg" withBorder>
-                    <Radio.Group
-                        {...form.getInputProps("form_type")}
-                        label="Jenis Campaign"
-                        description="Sesuaikan jenis campaign anda"
-                        withAsterisk
-                    >
-                        <Stack mt="xs">
-                            {formTypes.map((item) => (
-                                <Radio
-                                    key={`radio-form-type-${item.value}`}
-                                    value={item.value}
-                                    label={item.label}
-                                />
-                            ))}
-                        </Stack>
-                    </Radio.Group>
+                    <SimpleGrid cols={{ base: 1, md: 2 }}>
+                        <Radio.Group
+                            {...form.getInputProps("category_id")}
+                            label="Kategori Campaign"
+                            description="Sesuaikan kategori campaign anda"
+                            withAsterisk
+                        >
+                            <Stack mt="xs">
+                                {categories.map((item) => (
+                                    <Radio
+                                        key={`radio-form-type-${item.value}`}
+                                        value={item.id?.toString()}
+                                        label={item.name}
+                                    />
+                                ))}
+                            </Stack>
+                        </Radio.Group>
+                        <Radio.Group
+                            {...form.getInputProps("form_type")}
+                            label="Jenis Campaign"
+                            description="Sesuaikan jenis campaign anda"
+                            withAsterisk
+                        >
+                            <Stack mt="xs">
+                                {formTypes.map((item) => (
+                                    <Radio
+                                        key={`radio-form-type-${item.value}`}
+                                        value={item.value}
+                                        label={item.label}
+                                    />
+                                ))}
+                            </Stack>
+                        </Radio.Group>
+                    </SimpleGrid>
                 </Card.Section>
             </Card>
         </Stack>

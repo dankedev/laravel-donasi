@@ -12,7 +12,6 @@ import {
 import AppLayout from "@/layouts/app-layout";
 import { CampaignProps } from "@/types/campaign";
 import { Head } from "@inertiajs/react";
-import { Button } from "@mantine/core";
 
 export default function CampaignEditor({ data }: { data: CampaignProps }) {
     return (
@@ -26,11 +25,6 @@ export default function CampaignEditor({ data }: { data: CampaignProps }) {
                     </div>
                     <div className="relative col-span-1 lg:col-span-3">
                         <CampaignSettingEditor />
-                        <div className="py-12">
-                            <Button type="submit" fullWidth size="lg">
-                                Simpan Campaign
-                            </Button>
-                        </div>
                     </div>
                 </div>
             </AppLayout>
