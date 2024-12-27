@@ -88,11 +88,10 @@ COPY --from=base /var/www/html/vendor /app/vendor
 
 RUN  npm install --legacy-peer-deps
 
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+
+
+COPY --from=base /app/node_modules ./node_modules
 COPY . .
-
-
 # RUN node --version
 # RUN npm --version
 RUN NODE_ENV=production npm run build
