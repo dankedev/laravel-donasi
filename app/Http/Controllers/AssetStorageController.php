@@ -16,7 +16,7 @@ class AssetStorageController extends Controller
         try {
             $rules = [
                 'file' => ['required', 'file', 'mimes:jpeg,png,webp,jpg,svg,pdf', 'max:10240'],
-                'directory' => ['required',  Rule::in(['articles', 'courses', 'tutorials', 'chapters', 'lessons', 'snippets', "featured"])],
+                'directory' => ['required',  Rule::in(['articles', 'category', "featured"])],
 
             ];
             $messages = [

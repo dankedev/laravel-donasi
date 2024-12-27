@@ -21,6 +21,7 @@ export function FormCategory({ category }: { category?: CategoryProps }) {
 
     useEffect(() => {
         if (category?.id) {
+            form.reset();
             initializeFormValues<CategoryProps>(category)
                 .then((a) => {
                     form.setValues(a);
