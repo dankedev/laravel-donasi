@@ -85,11 +85,13 @@ WORKDIR /app
 COPY . .
 COPY --from=base /var/www/html/vendor /app/vendor
 
-RUN npm install --legacy-peer-deps
+# RUN npm install --legacy-peer-deps
 
-RUN node --version && npm --version
+# RUN node --version && npm --version
 
-RUN NODE_ENV=production npm run build --verbose
+# RUN NODE_ENV=production npm run build --verbose
+RUN yarn install
+RUN yarn build
 
 FROM base
 
