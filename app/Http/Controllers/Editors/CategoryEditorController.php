@@ -17,7 +17,7 @@ class CategoryEditorController extends Controller
      */
     public function index(Category $category)
     {
-        $categories = Category::all();
+        $categories = Category::with('featuredImage')->get();
         return Inertia::render('campaign/category', [
             "data" => $categories
         ]);

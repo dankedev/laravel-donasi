@@ -60,7 +60,7 @@ export function FormCategory({ category }: { category?: CategoryProps }) {
     };
 
     return (
-        <Card shadow="lg">
+        <Card shadow="lg sticky top-0">
             <Card.Section px="xl" py="md" withBorder bg="gray.0" fw="bold" fz="lg">
                 {form.values?.id ? (
                     <div>

@@ -42,7 +42,7 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'campaigns' => Campaign::select('id', 'title', 'slug', 'featured_id')->with('featuredImage')->get(),
-            'categories' => Category::select('id', 'name', 'slug')->get(),
+            'categories' => Category::with('featuredImage')->select('id', 'featured_id', 'name', 'slug')->get(),
         ];
     }
 }
