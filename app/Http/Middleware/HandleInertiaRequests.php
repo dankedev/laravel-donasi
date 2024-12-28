@@ -34,7 +34,7 @@ class HandleInertiaRequests extends Middleware
     {
         $campaigns = Campaign::select('id', 'title', 'slug', 'featured_id')->with('featuredImage')->get();
         $categories = Category::with('featuredImage')->select('id', 'featured_id', 'name', 'slug')->get();
-        $campaigns = $campaigns->toArray();
+        // $campaigns = $campaigns->toArray();
 
         // dd($campaigns);
         // dd($campaigns->toArray());
@@ -47,7 +47,7 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'campaigns' => null,
+            'campaigns' => $campaigns,
             'categories' => $categories,
         ];
     }
