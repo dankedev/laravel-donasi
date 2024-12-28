@@ -6,11 +6,22 @@ use App\Models\Campaigns\Campaign;
 use App\Traits\ApiResponse;
 use App\Traits\UseUploadImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Validation\Rule;
 
 class AssetStorageController extends Controller
 {
     use ApiResponse, UseUploadImage;
+
+
+    public function test(Request $request)
+    {
+        $image = $request->file('file');
+        $path = $image->store('file', 'do_spaces');
+
+        return ['url' => Storage::disk('do_spaces')->get($path)];
+    }
     public function upload(Request $request)
     {
         try {
@@ -52,8 +63,8 @@ class AssetStorageController extends Controller
                 return response()->json($document);
             }
         } catch (\Exception $e) {
-            dd($e);
-            return $this->error([], $e->getMessage());
+            // dd($e);
+            return $this->error([], $e);
         }
     }
 }

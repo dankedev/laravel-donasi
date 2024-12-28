@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::controller(AssetStorageController::class)->prefix("upload")->group(function () {
     // Route::post('/{id}', [AssetStorageController::class, ' "upload"'])->name('upload');
     Route::post('/', "upload")->name('upload');
+    // Route::post('/test', "test")->name('upload');
 });
 
 Route::prefix('setting')->name('setting.')->controller(SiteConfigController::class)->group(function () {

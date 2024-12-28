@@ -7,9 +7,8 @@ import { PropsWithChildren } from "react";
 export default function ThemeProvider({ children }: PropsWithChildren) {
     return (
         <MantineProvider theme={themeConfig} withCssVariables withGlobalClasses>
-            <Notifications />
             <ModalsProvider>{children}</ModalsProvider>
-            {/* <MainSpotlight /> */}
+            <Notifications />
         </MantineProvider>
     );
 }
