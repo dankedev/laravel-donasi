@@ -25,14 +25,11 @@ export const Icons = {
         </svg>
     ),
     twitter: (props: IconProps) => (
-        <svg
-            {...props}
-            height="23"
-            viewBox="0 0 1200 1227"
-            width="23"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+            <path
+                fill="currentColor"
+                d="M10.488 14.651L15.25 21h7l-7.858-10.478L20.93 3h-2.65l-5.117 5.886L8.75 3h-7l7.51 10.015L2.32 21h2.65zM16.25 19L5.75 5h2l10.5 14z"
+            ></path>
         </svg>
     ),
     gitHub: (props: IconProps) => (
@@ -151,6 +148,22 @@ export const Icons = {
                     ></animate>
                 </path>
             </g>
+        </svg>
+    ),
+    youtube: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+            <path
+                fill="currentColor"
+                d="M10 15l5.19-3L10 9v6m11.56-7.83c.65-.17 1.22-.25 1.77-.25c2.11 0 3.47 1.36 3.47 3.47s-1.36 3.47-3.47 3.47c-.55 0-1.1.08-1.65.25l-1.77.46V6.57l1.77.46Z"
+            />
+        </svg>
+    ),
+    tiktok: (props: IconProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+            <path
+                fill="currentColor"
+                d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48"
+            ></path>
         </svg>
     ),
 };
