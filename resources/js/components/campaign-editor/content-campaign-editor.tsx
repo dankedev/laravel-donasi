@@ -120,7 +120,7 @@ export function ContentCampaignEditor() {
                             withAsterisk
                         >
                             <Stack mt="xs">
-                                {categories.map((item) => (
+                                {categories?.map((item) => (
                                     <Radio
                                         key={`radio-category-${item.id}`}
                                         value={item.id?.toString()}

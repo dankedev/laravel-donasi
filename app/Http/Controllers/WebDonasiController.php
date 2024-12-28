@@ -10,7 +10,10 @@ class WebDonasiController extends Controller
 {
     public function index()
     {
-        return Inertia::render('home');
+        $campaigns = Campaign::where('publised', true)->with(['featuredImage', 'category'])->get();
+        return Inertia::render('home', [
+            'data' => fn() => $campaigns
+        ]);
     }
 
     public function show($slug)

@@ -32,7 +32,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $campaigns = Campaign::select('id', 'title', 'slug', 'featured_id')->with('featuredImage')->get();
+        $campaigns = Campaign::where('publised', true)->select('id', 'title', 'slug', 'featured_id')->with('featuredImage')->get();
         $categories = Category::with('featuredImage')->select('id', 'featured_id', 'name', 'slug')->get();
         // $campaigns = $campaigns->toArray();
 

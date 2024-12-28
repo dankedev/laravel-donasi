@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "tsc && vite build &&  && vite build --ssr",
+        "build": "tsc && vite build &&  vite build --ssr",
         "dev": "vite",
         "lint": "eslint resources/js --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --fix",
         "format": "prettier --write \"**/*.{ts,tsx}\"",
@@ -66,6 +66,7 @@
         "@tiptap/react": "^2.10.4",
         "@tiptap/starter-kit": "^2.10.4",
         "clsx": "^2.1.1",
+        "date-fns": "^4.1.0",
         "dayjs": "^1.11.13",
         "embla-carousel-autoplay": "^8.5.1",
         "embla-carousel-react": "^8.5.1",

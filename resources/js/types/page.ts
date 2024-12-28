@@ -8,6 +8,6 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: UserProps;
     };
     ziggy: Config & { location: string };
-    campaigns: CampaignProps[];
-    categories: CategoryProps[];
+    campaigns?: CampaignProps[];
+    categories?: CategoryProps[];
 };

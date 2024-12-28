@@ -19,7 +19,10 @@ const MemoizedCarouselSlide = memo(function CarouselSlide({ item }: { item: Camp
 
 export const HomeSlider = memo(function HomeSlider() {
     const props = usePage().props;
-    const campaigns = useMemo(() => getRandomElements(props.campaigns, 3), [props.campaigns]);
+    const campaigns = useMemo(
+        () => getRandomElements(props?.campaigns || [], 3),
+        [props?.campaigns]
+    );
     const autoplay = useRef(Autoplay({ delay: 2000 }));
     return (
         <Carousel
