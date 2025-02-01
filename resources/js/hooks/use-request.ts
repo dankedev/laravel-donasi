@@ -3,9 +3,6 @@ import { useForm } from "@inertiajs/react";
 import { UseFormInput, useForm as useMantineForm } from "@mantine/form";
 import { useEffect } from "react";
 
-export function useMethod<TForm extends object>(initialValues?: TForm) {
-    return useForm<TForm>(initialValues);
-}
 
 type FormProps<Values> = UseFormInput<Values>;
 
@@ -17,7 +14,8 @@ export function useRequest<Values extends Record<string, unknown> = Record<strin
     const { errors, setData, data, ...other } = useForm();
 
     useEffect(() => {
-        setData(form.values);
+        // @ts-ignore
+        setData(form.values as unknown as typeof form.values);
     });
 
     useEffect(() => {

@@ -1,8 +1,10 @@
-import ApplicationLogo from "@/components/ApplicationLogo";
-import Dropdown from "@/components/Dropdown";
-import NavLink from "@/components/NavLink";
-import ResponsiveNavLink from "@/components/ResponsiveNavLink";
+// import ApplicationLogo from "@/components/ApplicationLogo";
+// import Dropdown from "@/components/Dropdown";
+// import NavLink from "@/components/NavLink";
+// import ResponsiveNavLink from "@/components/ResponsiveNavLink";
+import ApplicationLogo from "@/components/logo.tsx";
 import { Link, usePage } from "@inertiajs/react";
+import { Menu, NavLink } from "@mantine/core";
 import { PropsWithChildren, ReactNode, useState } from "react";
 
 export default function Authenticated({
@@ -37,8 +39,8 @@ export default function Authenticated({
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             <div className="relative ms-3">
-                                <Dropdown>
-                                    <Dropdown.Trigger>
+                                <Menu>
+                                    <Menu.Target>
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
@@ -60,21 +62,17 @@ export default function Authenticated({
                                                 </svg>
                                             </button>
                                         </span>
-                                    </Dropdown.Trigger>
+                                    </Menu.Target>
 
-                                    <Dropdown.Content>
-                                        <Dropdown.Link href={route("profile.edit")}>
+                                    <Menu.Dropdown>
+                                        <Menu.Item component={Link} href={route("profile.edit")}>
                                             Profile
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
-                                            href={route("logout")}
-                                            method="post"
-                                            as="button"
-                                        >
+                                        </Menu.Item>
+                                        <Menu.Item onClick={() => route("logout")} >
                                             Log Out
-                                        </Dropdown.Link>
-                                    </Dropdown.Content>
-                                </Dropdown>
+                                        </Menu.Item>
+                                    </Menu.Dropdown>
+                                </Menu>
                             </div>
                         </div>
 
@@ -117,12 +115,12 @@ export default function Authenticated({
 
                 <div className={(showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"}>
                     <div className="space-y-1 pt-2 pb-3">
-                        <ResponsiveNavLink
+                        <NavLink
                             href={route("admin.dashboard")}
                             active={route().current("admin.dashboard")}
                         >
                             Dashboard
-                        </ResponsiveNavLink>
+                        </NavLink>
                     </div>
 
                     <div className="border-t border-gray-200 pt-4 pb-1 dark:border-gray-600">
@@ -134,12 +132,12 @@ export default function Authenticated({
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route("profile.edit")}>
+                            <NavLink href={route("profile.edit")}>
                                 Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink method="post" href={route("logout")} as="button">
+                            </NavLink>
+                            <NavLink onClick={() => route("logout")} component="button">
                                 Log Out
-                            </ResponsiveNavLink>
+                            </NavLink>
                         </div>
                     </div>
                 </div>
