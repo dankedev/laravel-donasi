@@ -18,14 +18,14 @@ const PaginationLinks = ({
                 <span className="font-medium">{range?.total}</span> total)
             </p>
             <div>
-                <span className="relative z-0 inline-flex rounded-md shadow-sm">
+                <span className="relative z-0 inline-flex rounded-md shadow-xs">
                     <span>
                         {links?.map((link, index) => {
                             const key = link.label + index;
                             if (link.active) {
                                 return (
                                     <span key={key}>
-                                        <span className="relative -ml-px inline-flex cursor-default items-center border border-gray-300 bg-blue-500 px-4 py-2 text-sm font-medium leading-5 text-gray-100">
+                                        <span className="relative -ml-px inline-flex cursor-default items-center border border-gray-300 bg-blue-500 px-4 py-2 text-sm leading-5 font-medium text-gray-100">
                                             {link.label}
                                         </span>
                                     </span>
@@ -38,12 +38,12 @@ const PaginationLinks = ({
                                         <Link
                                             href={link.url}
                                             preserveState={true}
-                                            className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium leading-5 text-gray-700 hover:bg-gray-300"
+                                            className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-300"
                                         >
                                             {link.label}
                                         </Link>
                                     ) : (
-                                        <span className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium leading-5 text-gray-300">
+                                        <span className="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-300">
                                             {link.label}
                                         </span>
                                     )}

@@ -55,7 +55,7 @@ export default function HomeLayout({
         <div className="min-h-screen bg-blue-200/25 text-black/50 dark:bg-black dark:text-white/50">
             <HomeHeader />
             <Head title={`${title ?? "Beranda"} | Yayasan Barkasmal Nusantara`} />
-            <div className="container mx-auto flex min-h-screen max-w-screen-sm flex-col rounded-md bg-white">
+            <div className="container mx-auto flex min-h-screen max-w-(--breakpoint-sm) flex-col rounded-md bg-white">
                 <main className="flex-1">{children}</main>
                 <footer className="footer flex flex-col gap-4 border-t bg-stone-100 px-6 py-6 text-center text-xs lg:px-10">
                     <div>

@@ -8,11 +8,11 @@ export function HomeHeader() {
     const pinned = useHeadroom({ fixedAt: 200 });
     return (
         <div
-            className={cn("fixed left-0 right-0 top-0 z-50 w-full bg-white text-blue-800", {
+            className={cn("fixed top-0 right-0 left-0 z-50 w-full bg-white text-blue-800", {
                 ["bg-opacity-0"]: pinned,
             })}
         >
-            <div className="container mx-auto max-w-screen-sm bg-white p-4">
+            <div className="container mx-auto max-w-(--breakpoint-sm) bg-white p-4">
                 <div className="flex items-center justify-between">
                     <Link href={route("home")} className="flex items-center gap-2">
                         <img

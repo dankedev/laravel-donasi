@@ -22,7 +22,7 @@ export function SideNavMenu() {
             <AppShell.Section grow component={ScrollArea}>
                 <div className={classes.linksInner}>{links}</div>
             </AppShell.Section>
-            <div className="flex-grow-0 border-t px-6">
+            <div className="grow-0 border-t px-6">
                 <UserButton />
             </div>
         </nav>

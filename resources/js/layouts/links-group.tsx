@@ -48,9 +48,9 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link }: 
                 <Link
                     href={link ? route(link) : "#"}
                     className={cn(classes.control, {
-                        ["rounded-md bg-white shadow-sm hover:bg-red-100"]: current,
+                        ["rounded-md bg-white shadow-xs hover:bg-red-100"]: current,
                     })}
-                    // className={`${classes.control} ${current &&  "bg-white shadow-sm rounded-md"}`}
+                    // className={`${classes.control} ${current &&  "bg-white shadow-xs rounded-md"}`}
                 >
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">

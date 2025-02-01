@@ -14,7 +14,7 @@ export function CategoryList() {
                     {categories?.map((category) => (
                         <div key={category.id}>
                             <div className="flex flex-col items-center justify-center gap-2 text-center">
-                                <div className="flex-grow">
+                                <div className="grow">
                                     {" "}
                                     <img
                                         src={category.featured_image?.url}

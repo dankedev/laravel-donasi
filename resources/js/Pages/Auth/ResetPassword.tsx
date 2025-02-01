@@ -1,24 +1,24 @@
-import InputError from "@/components/InputError";
-import InputLabel from "@/components/InputLabel";
-import PrimaryButton from "@/components/PrimaryButton";
-import TextInput from "@/components/TextInput";
+import { useRequest } from "@/hooks/use-request.ts";
 import GuestLayout from "@/layouts/GuestLayout";
-import { Head, useForm } from "@inertiajs/react";
-import { FormEventHandler } from "react";
+import { Head } from "@inertiajs/react";
+import { Button, PasswordInput, TextInput } from "@mantine/core";
 
 export default function ResetPassword({ token, email }: { token: string; email: string }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        token: token,
-        email: email,
-        password: "",
-        password_confirmation: "",
+    const form = useRequest({
+        initialValues: {
+            token: token,
+            email: email,
+            password: "",
+            password_confirmation: "",
+        },
     });
 
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-
-        post(route("password.store"), {
-            onFinish: () => reset("password", "password_confirmation"),
+    const submit = () => {
+        form.post(route("password.store"), {
+            onFinish: () => {
+                form.setFieldValue("password", "");
+                form.setFieldValue("password_confirmation", "");
+            },
         });
     };
 
@@ -26,59 +26,25 @@ export default function ResetPassword({ token, email }: { token: string; email: 
         <GuestLayout>
             <Head title="Reset Password" />
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData("email", e.target.value)}
+            <form onSubmit={form.onSubmit(submit)}>
+                <div className="space-y-6">
+                    <TextInput label="Email" placeholder="Email" {...form.getInputProps("email")} />
+                    <PasswordInput
+                        label="Email"
+                        placeholder="Email"
+                        {...form.getInputProps("password")}
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        isFocused={true}
-                        onChange={(e) => setData("password", e.target.value)}
+                    <PasswordInput
+                        label="Konfirmasi Email"
+                        placeholder="Email"
+                        {...form.getInputProps("password_confirmation")}
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData("password_confirmation", e.target.value)}
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button className="ms-4" loading={form.processing} type="submit">
                         Reset Password
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </GuestLayout>

@@ -1,21 +1,17 @@
-import InputError from "@/components/InputError";
-import InputLabel from "@/components/InputLabel";
-import PrimaryButton from "@/components/PrimaryButton";
-import TextInput from "@/components/TextInput";
+import { useRequest } from "@/hooks/use-request.ts";
 import GuestLayout from "@/layouts/GuestLayout";
-import { Head, useForm } from "@inertiajs/react";
-import { FormEventHandler } from "react";
+import { Head } from "@inertiajs/react";
+import { Button, PasswordInput } from "@mantine/core";
 
 export default function ConfirmPassword() {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        password: "",
+    const form = useRequest({
+        initialValues: {
+            password: "",
+        },
     });
-
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-
-        post(route("password.confirm"), {
-            onFinish: () => reset("password"),
+    const submit = () => {
+        form.post(route("password.confirm"), {
+            onFinish: () => form.reset(),
         });
     };
 
@@ -28,27 +24,19 @@ export default function ConfirmPassword() {
                 continuing.
             </div>
 
-            <form onSubmit={submit}>
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+            <form onSubmit={form.onSubmit(submit)}>
+                <div className="space-y-6">
+                    <PasswordInput label="Password" {...form.getInputProps("password")} />
 
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        isFocused={true}
-                        onChange={(e) => setData("password", e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Confirm
-                    </PrimaryButton>
+                    <div className="mt-4 flex items-center justify-end">
+                        <Button
+                            className="ms-4"
+                            disabled={form.processing}
+                            loading={form.processing}
+                        >
+                            Confirm
+                        </Button>
+                    </div>
                 </div>
             </form>
         </GuestLayout>

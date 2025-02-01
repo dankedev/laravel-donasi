@@ -32,7 +32,7 @@ export function CampaignLists({
                                 <p className="text-xs text-gray-500">{campaign.category?.name}</p>
                                 <div className="relative h-1 w-full rounded-md bg-gray-300">
                                     <span
-                                        className="absolute left-0 top-0 h-full rounded-md bg-blue-500"
+                                        className="absolute top-0 left-0 h-full rounded-md bg-blue-500"
                                         style={{ width: `${(tercapai / campaign.goal) * 100}%` }}
                                     ></span>
                                 </div>

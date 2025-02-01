@@ -1,19 +1,16 @@
-import InputError from "@/components/InputError";
-import PrimaryButton from "@/components/PrimaryButton";
-import TextInput from "@/components/TextInput";
+import { useRequest } from "@/hooks/use-request.ts";
 import GuestLayout from "@/layouts/GuestLayout";
-import { Head, useForm } from "@inertiajs/react";
-import { FormEventHandler } from "react";
+import { Head } from "@inertiajs/react";
+import { Button, TextInput } from "@mantine/core";
 
 export default function ForgotPassword({ status }: { status?: string }) {
-    const { data, setData, post, processing, errors } = useForm({
-        email: "",
+    const form = useRequest({
+        initialValues: {
+            email: "",
+        },
     });
-
-    const submit: FormEventHandler = (e) => {
-        e.preventDefault();
-
-        post(route("password.email"));
+    const submit = () => {
+        form.post(route("password.email"));
     };
 
     return (
@@ -31,23 +28,24 @@ export default function ForgotPassword({ status }: { status?: string }) {
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            <form onSubmit={form.onSubmit(submit)}>
                 <TextInput
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={data.email}
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={(e) => setData("email", e.target.value)}
+                    {...form.getInputProps("email", {
+                        label: "Email",
+                        placeholder: "Email",
+                        required: true,
+                    })}
                 />
 
-                <InputError message={errors.email} className="mt-2" />
-
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button
+                        className="ms-4"
+                        disabled={form.processing}
+                        loading={form.processing}
+                        type="submit"
+                    >
                         Email Password Reset Link
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </GuestLayout>
