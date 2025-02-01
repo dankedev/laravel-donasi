@@ -18,7 +18,7 @@ class WebDonasiController extends Controller
 
     public function show($slug)
     {
-        $campaign = Campaign::where('slug', $slug)->firstOrFail();
+        $campaign = Campaign::where('slug', $slug)->with(['featuredImage', 'category'])->firstOrFail();
         return Inertia::render('front/campaign', [
             'campaign' => $campaign
         ]);

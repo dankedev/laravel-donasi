@@ -1,5 +1,6 @@
 import { CampaignProps } from "@/types/campaign";
 import { formatDateDifference, numberFormat } from "@/utils";
+import { Link } from "@inertiajs/react";
 
 export function CampaignLists({
     className,
@@ -16,7 +17,8 @@ export function CampaignLists({
                 {campaigns?.map((campaign) => {
                     const tercapai = 2000000;
                     return (
-                        <div
+                        <Link
+                            href={route("campaign.show", campaign.slug)}
                             key={`campaign-${campaign.slug}`}
                             className="group relative grid h-full grid-cols-12 items-stretch justify-stretch px-6 py-6 hover:bg-gray-100"
                         >
@@ -50,7 +52,7 @@ export function CampaignLists({
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>
